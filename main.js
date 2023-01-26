@@ -1,36 +1,52 @@
-/*** Pratiquez la récupération de valeurs depuis un objet ***/
+/*** Pratiquez les classes ***/
 
 /*
-Dans l’exercice précédent, quand vous avez construit l'Object episode  , le code de votre collègue en a extrait les données pour les afficher dans son composant. Maintenant, c'est à vous d'extraire les informations pour les fournir au composant avec la notation  .  ou "dot".
+La meilleure façon d'apprendre les classes est d'en créer une vous-même.
+
+Maintenant que vous savez créer des classes, il est temps d'en profiter pour notre composant épisode. Cette fois-ci, il y a trois composants épisodees, donc la manière logique de procéder serait de créer une classe ' Episode ', et puis en créer trois instances, pour chaque épisodes.
+
+1. Créer une classe Episode avec le mot clé ' class '.
+
+2. Créez un constructor pour votre class qui devra accepter trois arguments :
+
+- title : le titre de l'épisode.
+- duration : la durée de l'épisode.
+- hasBeenWatched : si l'épisode a été regardé ou non (booléen)
+
+En utilisant le mot clé " this ", assignez les propriétés title, duration et hasBeenWatched via un constructor.
+
+Avec le mot clé ' new ', créez trois instances de la classe Episode :
+- firstEpisode
+- secondEpisode
+- thirdEpisode
+
+N'oubliez pas de passer des arguments appropriés à chaque instance.
 */
 
-/*
-
-1. Créez les trois variables suivantes :
-
-episodeTitle  : le titre de l'épisode (string) ;
-
-episodeDuration  : la durée de l'épisode (number) ;
-
-episodeHasBeenWatched  : si l'épisode a été regardé ou non (boolean).
-
-Assignez-y les valeurs correspondantes de l'objet  episode  en utilisant la notation "dot".
-*/
-
-let episode = {
-  title: 'Dark Beginning',
-  duration: 45,
-  hasBeenWatched: false
+class Episode {
+  constructor(title, duration, hasBeenWatched) {
+    this.title = title;
+    this.duration = duration;
+    this.hasBeenWatched = hasBeenWatched;
+  }
 }
 
 // Insérer votre code ci-dessous
 
-let episodeTitle = episode.title;
-let episodeDuration = episode.duration;
-let episodeHasBeenWatched = episode.hasBeenWatched;
+let firstEpisode = new Episode ("le mystère des égouts", 50, true)
+let secondEpisode = new Episode ("le cadavre de la Tour", 60, true)
+let thirdEpisode = new Episode ("Le musée hanté", 80, false)
 
 // Code de l'exercice.
 
-document.querySelector('#episode-info').innerText = `Episode : ${episodeTitle}
-Duration : ${episodeDuration} min
-${episodeHasBeenWatched ? 'Already Watched' : 'Not yet watched'}`;
+document.querySelector('#first_episode-info').innerText = `Episode : ${firstEpisode.title}
+Duration : ${firstEpisode.duration} min
+${firstEpisode.hasBeenWatched ? 'Already Watched' : 'Not yet watched'}`;
+
+document.querySelector('#second_episode-info').innerText = `Episode : ${secondEpisode.title}
+Duration : ${secondEpisode.duration} min
+${secondEpisode.hasBeenWatched ? 'Already Watched' : 'Not yet watched'}`;
+
+document.querySelector('#third_episode-info').innerText = `Episode : ${thirdEpisode.title}
+Duration : ${thirdEpisode.duration} min
+${thirdEpisode.hasBeenWatched ? 'Already Watched' : 'Not yet watched'}`;
