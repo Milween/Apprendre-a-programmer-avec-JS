@@ -1,45 +1,41 @@
-// Pratiquez la création de variables.
+// pratiquez les constantes 
 
 /*
-1. Créez une variable appelée numberOfSeasons avec la valeur 6.
-2. Créez une variable appelée numberOfEpisodes avec la valeur 12 
+Voici un composant qui déconstruit une journée en heures, minutes et secondes.
+
+Tout ce que vous avez à faire, c'est de créer les trois constantes qui donnent le nombre d'heures par jour, le nombre de minutes par heure, et le nombre de secondes par minute.
+
+Jouez un peu avec ces valeurs, et vous verrez vite l'importance d'avoir les bonnes valeurs constantes dans une application !
 */
 
 /*
-Pour savoir à quoi sert chaque enveloppe, vous devez les étiqueter : vous attribuez un nom à votre variable.
-Le nom d'une variable doit indiquer ce qui se trouver à l'intérieur, tout comme une étiquette sur un carton.
- */
-
-// Voici quelques règles générales pour la création de noms :
-
-/*
-- Utiliser des noms descriptifs dans l'ensemble de votre code.
-
-- Ne PAS utiliser des abréviations ou raccourcir des mots.
-
-- Suivre une convention de nommage constante. La convention de nommage la plus courante est 'camel case'.
-Exemple : numberOfCats, finalAnswer ect...
+Dans l'espace alloué, créez les trois constantes suivantes :
+- hoursPerDay: heures par jour
+- minutesPerHour: minutes par heure
+- secondsPerMinute: secondes par minute
 */
 
+// Create your code under 
 
-//*** Créer une variable en la déclarant :
-
-/*
-Pour utiliser une variable dans votre code, vous devez la créer, c'est ce que l'on appelle déclarer une variable.
-*/
-
-let numberOfCats = 2;
-let NumberOfDogs = 4;
-
-/*
-Ici, nous déclarons (créons) et initialisons (donnons une valeur à) deux variables : number numberOfCats et numberOfDogs.
-*/
-
-// ECRIRE LE CODE DE L'EXERCICE CI-DESSOUS :
-
-let numberOfEpisodes = 6;
-let numberOfSeasons = 12;
+const hoursPerDay = 24;
+const minutesPerHour = 60;
+const secondsPerMinute = 60;
 
 // code de l'exercice.
-let paragraph = document.querySelector('#info');
-paragraph.innerText = `${numberOfSeasons} seasons, ${numberOfEpisodes} episodes per season`;
+
+const dayInput = document.querySelector('#day-input');
+const calculateButton = document.querySelector('#calculate-button');
+const hours = document.querySelector('#hours');
+const minutes = document.querySelector('#minutes');
+const seconds = document.querySelector('#seconds');
+
+calculateButton.addEventListener('click', () => {
+  let days = dayInput.value;
+  let calcHours = days * hoursPerDay;
+  let calcMinutes = calcHours * minutesPerHour;
+  let calcSeconds = calcMinutes * secondsPerMinute;
+
+  hours.innerText = `${ calcHours } hours`;
+  minutes.innerText = `${ calcMinutes } minutes`;
+  seconds.innerText = `${ calcSeconds } seconds`;
+});
