@@ -1,112 +1,40 @@
-/*** Enregistrez vos données avec des types de données : ***/
-
-// Une variable est composée de plusieurs éléments, découvrons les types !
-
-/** Qu'est ce qu'un type ? **/
+/***  Définir des objets et leurs attributs avec des classes ***/
 
 /*
-Le TYPE d'une variable ou d'une constante est tout simplement le genre des données qu'elle enregistre. EN JS, il y a trois types primitifs principaux.
-
-- NUMBER
-- STRING
-- BOOLEAN
-
-Les types primitifs sont les briques de base de chaque structure de données en JS ! Il est important de comprendre leur existence et leur importance.
+Vous avez probablement entendu auparavant le terme OBJET dans un contexte de programmation. Mais qu'est-ce que cela signifie vraiment ? 
 */
 
-/** Découvrez le type 'NUMBER' : **/
-
 /*
-Toutes les variables que vous avez créez jusqu-à maitenant dans ce cours étaient de type NUMBER.
-
-En programmation, 
-
-- les nombres entiers sont aussi appelés : entiers ou integers; 
-- les nombres avec des chiffres après la virgule : virgule flottante ou floating-point.
+Un stylo est un type d'objet : vous avez tous types de stylo : à piston, à bille, feutre, gel ect... comme faisant partie du type d'objet : STYLO.
 */
 
-/* Attention à l'arithmétique en virgule flottante ! */
-
 /*
-L'arithmétique en virgule flottante peut déclenchez des erreurs très gênantes dans tous les langages de programmation :
+Cette liste mentale d'attributs sert de modèle pour cet objet. En programmation, on l'appelle une CLASSE. Pour créer une classe, vous pouvez choisir le nom de votre choix.
+
+Vous le verrez, les classes permettent aussi de regrouper beaucoup de détails, c'est pourquoi elles s'appellet aussi des TYPES CONPLEXES.
 */
 
-let intergerCalculation = 1 + 2; // donne 3
-let weirdCalculation = 0.1 + 0.2; // on attend 0.3, réponse réelle 0,3000000000004
+/** DECOUVERTE DES OBJETS **/
 
 /*
-Chaque fois que c'est possible, utilisez des calculs avec des entiers.
+Les objets JS sont écrits en JSON (JavaSCript Object Notation). Ce sont des séries de paires clés-valeurs séparées par des virgules, entre des accolades. Les objets peuvent être enregistrés dans une variable :
 */
 
-/* Appréhendez les valeurs logiques */
+let myBook = {
+  titre: 'The Story of Tau',
+  author: 'Will Alexander',
+  numberOfPages: 250,
+  isAvailable: true
+}
 
 /*
-Les valeurs logiques (booléans) sont le plus simple des types primitifs : elles peuvent avoir que deux valeurs :
-- VRAI / FAUX
-Elles s'utilisent dans toutes sortes de cas :
-- indiquer si un utilisateur est connecté ou non.
-- Si une case est cochée.
-- Si un ensemble de conditions est réuni.
+Chaque clé est une chaîne et les valeurs associées peuvent avoir tout type de données. (nombre, chaîne, ect..)
+
+Construire des objets présente un avantage essentiel : cela permet de regrouper les attributs d'une chose unique à un même emplacement, que ce soit un livre, un profil utilisateur ou la configuration d'une application, par exemple.
 */
 
-let userIsSignedIn = true;
-let userIsAdmin = false;
-
-
-/** Découvrez les chaînes de caractères **/
+/** Pratiquez la Création d'objet **/
 
 /*
-Les chaînes de caractères (STRING) sont la façon d'enregistrer du TEXTE. On peut enregistrer dans une variable de type STRING n'importe quelle chaîne de caractères.
-
-Ces variables sont encadrées par des guillemets simples ou doubles :
-*/
-
-let firstName = "Will";
-let lastName = 'Alexander';
-
-/*
-Les chaînes peuvent aussi être CONCATENEES par l'opérateur '+' :
-*/
-
-let wholeName = firstName + ' ' + lastName; // valeur: 'Will Alexander'
-
-/*
-Il est possible depuis quelques années d'utiliser une nouvelle écriture qui simplifie la concaténation des variables : la string interpolation.
-
-Pour créer une STRING INTERPOLATION on écrit du texte encadrée par le signe ' ` ' et si on veut injecter une variable dans ce code on utilise l'expression " ${maVariable}" 
-*/
-
-const myName = 'Alexander';
-const salutation = `Bienvenue sur mon site ${myName}!`;
-console.log(salutation) // retournera 'Bienvenue sur mon site Alexander !'
-
-/** EXERICE P1C2_exo1**/
-/* Pratiquez les types de données */
-
-// Passer sur la branche P1C2_exo2
-
-/** Comprenez les types en JavaScript **/
-
-/*
-JavaScript est un langage à types DYNAMIQUES et à typage FAIBLE
-
-Cela signifie que vous pouvez initialiser une variable en tant que nombre, puis la réaffecter comme une chaîne.
-
-Ceci offre  une grande souplesse, mais peut aussi conduire à un comportement inattendu.
-
-La morale de l'histoire : prenez garder aux types de vos variables, en général, utilisez des constantes chaque fois que c'est possible.
-*/
-
-/*** EN RESUME ***/
-
-/*
-Dans ce chapitre, vous avez découvert les trois principaux types de données primitifs en JavaScript :
-
-- number (nombre) ;
-
-- boolean (valeur logique) ;
-
-- string (chaîne de caractères).
-
-Il existe d'autres types de données plus complexes.
+Rendez-vous la branche P1C3-exo1 pour voir l'exercice.
 */
