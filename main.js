@@ -1,12 +1,9 @@
-//*** Qu'est ce qu'une variable ?
+// Pratiquez l'utilisation des opérateurs'
 
 /*
- Une variable est un contenant utilisé pour enregistrer une donnée spécifique dans votre programme. Une donnée placée dans une variable s'appelle une valeur.
-*/
+1. Dans l'éditeur JavaScript; créez deux variables episodeTime et commercialTime avec les valeurs (45 et 5).
 
-//Exemple :
-/*
-Utiliser une enveloppe pour stocker de l'argent pour des dépenses courantes, loyer. Une autre pour des économies pour une occasion particulière, voyage ou sortie.
+2. A l'aide de deux variables de deux variables de temps que vous vevez de créer, ainsi que du nombre d'épisodes et du nombre de saisons, créez une variable nommée totalShowTime qui contient le temps de visionnage totam de cette série.
 */
 
 /*
@@ -38,56 +35,20 @@ let NumberOfDogs = 4;
 /*
 Ici, nous déclarons (créons) et initialisons (donnons une valeur à) deux variables : number numberOfCats et numberOfDogs.
 */
+let numberOfEpisodes = 6;
+let numberOfSeasons = 12;
 
-// Modifiez la valeur d'une variable.
+// ECRIRE LE CODE DE L'EXERCICE CI-DESSOUS :
 
-/*
-La façon la plus simple de modifier la valeur d'une variable est simplement de la réaffecter :
-*/
-let numberOfCats = 3;
-numberOfCats = 4;
+// 1.
+const episodeTime = 45;
+const commencialTime = 5;
 
-// Opérateurs arithmétiques - travail sur les nombres.
+// 2.
+let totalShowTime = (episodeTime + commencialTime) * numberOfSeasons * numberOfEpisodes;
 
-// Pour ajouter des variables, on utilise + :
-let totalCDs = 67;
-let totalVinyls = 34;
-let totalMusic = totalCDs + totalVinyls;
+// code de l'exercice.
+let paragraph = document.querySelector('#info');
+paragraph.innerText = `${numberOfSeasons} seasons, ${numberOfEpisodes} episodes per season
 
-// Pour soutraire, on utilise - :
-let cookiesInJar = 10;
-let cookiesRemoved = 2;
-let cookiesLeftInJar = cookiesInJar - cookiesRemoved;
-
-// Pour ajouter ou soustraire un nombre d'une variable, vous pouvez utiliser les opérateurs : += et -= :
-let cookiesInJar = 10;
-/* manger deux cookies */
-cookiesInJar -= 2; // Il reste 8 cookies.
-/* cuisson d'un nouveau lot de cookies */
-cookiesInJar += 12; // Il y a maintenant 20 cookies dans la boite.
-
-// Enfin pour incrémenter ou décrémenter de 1 : on utilise ++ ou -- :
-let numbersOfLikes = 10;
-numbersOfLikes++; // Cela fait 11.
-numbersOfLikes--; // et on revient à 10.
-
-// Multiplication et division :
-
-// Les opérations de multiplication et de division utilisent les opérateurs * et / :
-let costPerProduct = 20;
-let numberOfProducts = 5;
-let totalCost = costPerProduct + numberOfProducts;
-let averageCostPerProduct = totalCost / numberOfProducts;
-
-// Comme pour l'addition et la soustraction, il exidste aussi les opérateurs *= et /= pour multiplier ou diviser un nombre.
-let numberOfCats = 2;
-numberOfCats *= 6; // vaut 2*6 = 12;
-numberOfCats /= 3; // vaut 12/3 = 4;
-
-// Pratiquez l'utilisation des opérations :
-
-/* 
-Pour vous entraîner à créer des variables, rendez-vous sur cet exercice CodePen. https://codepen.io/nicolaspatschkowski/pen/BaNxgzN
-
-*/
-
+Total viewing time: ${totalShowTime} minutes`
