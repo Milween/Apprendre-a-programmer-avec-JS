@@ -1,23 +1,21 @@
-/*** Pratiquez la création d'un objet ***/
+/*** Pratiquez la récupération de valeurs depuis un objet ***/
 
 /*
-Dans un exercice précédent, vous avez créé trois variables pour décrire l'épisode d'une série. On dirait la situation parfaite pour créer un seul objet  episode  : créons-le maintenant !
+Dans l’exercice précédent, quand vous avez construit l'Object episode  , le code de votre collègue en a extrait les données pour les afficher dans son composant. Maintenant, c'est à vous d'extraire les informations pour les fournir au composant avec la notation  .  ou "dot".
 */
 
 /*
 
-1. Créez un objet (Object, en anglais) et stockez-le dans une variable appelée ' episode' . Utilisez bien des accolades {} et mettez les trois attributs suivants :
+1. Créez les trois variables suivantes :
 
-title : le titre de l'épisode ;
+episodeTitle  : le titre de l'épisode (string) ;
 
-duration : la durée de l'épisode ;
+episodeDuration  : la durée de l'épisode (number) ;
 
-hasBeenWatched : si l'épisode a été visionné ou non.
+episodeHasBeenWatched  : si l'épisode a été regardé ou non (boolean).
 
-Associez des valeurs appropriées à chaque attribut. N'oubliez pas d'utiliser des paires clé-valeur.
+Assignez-y les valeurs correspondantes de l'objet  episode  en utilisant la notation "dot".
 */
-
-// Insérer votre code ci-dessous
 
 let episode = {
   title: 'Dark Beginning',
@@ -25,8 +23,14 @@ let episode = {
   hasBeenWatched: false
 }
 
+// Insérer votre code ci-dessous
+
+let episodeTitle = episode.title;
+let episodeDuration = episode.duration;
+let episodeHasBeenWatched = episode.hasBeenWatched;
+
 // Code de l'exercice.
 
-document.querySelector('#episode-info').innerText = `Episode : ${episode.title}
-Duration : ${episode.duration} min
-${episode.hasBeenWatched ? 'Already Watched' : 'Not yet watched'}`;
+document.querySelector('#episode-info').innerText = `Episode : ${episodeTitle}
+Duration : ${episodeDuration} min
+${episodeHasBeenWatched ? 'Already Watched' : 'Not yet watched'}`;
