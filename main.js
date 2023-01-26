@@ -84,3 +84,29 @@ console.log(salutation) // retournera 'Bienvenue sur mon site Alexander !'
 /* Pratiquez les types de données */
 
 // Passer sur la branche P1C2_exo2
+
+/** Comprenez les types en JavaScript **/
+
+/*
+JavaScript est un langage à types DYNAMIQUES et à typage FAIBLE
+
+Cela signifie que vous pouvez initialiser une variable en tant que nombre, puis la réaffecter comme une chaîne.
+
+Ceci offre  une grande souplesse, mais peut aussi conduire à un comportement inattendu.
+
+La morale de l'histoire : prenez garder aux types de vos variables, en général, utilisez des constantes chaque fois que c'est possible.
+*/
+
+/*** EN RESUME ***/
+
+/*
+Dans ce chapitre, vous avez découvert les trois principaux types de données primitifs en JavaScript :
+
+- number (nombre) ;
+
+- boolean (valeur logique) ;
+
+- string (chaîne de caractères).
+
+Il existe d'autres types de données plus complexes.
+*/
