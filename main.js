@@ -79,3 +79,59 @@ let bookTitle = Book[propertyToAccess] // "L'histoire de Tao"
 /** Pratiquez la récupération de valeurs depuis un objet.**/
 
 // Rendez-vous sur la branche P1C3_exo2.
+
+/*** Manipuler des classes ***/
+
+/*
+La construction d'un objet à la main, par la notation à accolades vue précédemment, convient bien à des objets simples et uniques. Mais vous aurez souvent besoin de beaucoup d'objets du même type. C'est là que les CLASSES sont utiles.
+*/
+
+/*
+Une CLASSE est une MODELE pour un objet dans le code. Elle permet de construire plusieurs objets du même type (appelés INSTANCES de la même classe) plus facilement, rapidement et en toute fiabilité.
+*/
+
+/*
+Pour créer une clase dans JS, utilisez le mot clé 'class', suivi par un nom, encadrez ensuite le code de la classe entre accolades :
+*/
+
+class Book {
+
+}
+
+/*
+Pour cette classe, nous souhaitons que chaque BOOK ait un titre, un auteur et un nombre de pages, pour cela, vous utiliserez ce qu'on appelle un CONSTRUCTOR.
+
+Le CONSTRUCTOR d'une classe est la fonction qui est appelée quand on crée une nouvelle instance de cette classe avec le mot clé NEW
+*/
+
+class Livre {
+  constructor(title, author, pages) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+  }
+}
+
+/*
+Ici, le mot clé THIS fait référence à la nouvelle instance. Donc, il utilise la notation dot pour attribuer les valeurs reçues aux clés correspondantes.
+
+Maintenant que la classe est terminée, vous pouvez créer des instances par le mot clé 'NEW' :
+*/
+
+let monLivre = new Livre("L'histoire de Hulk, Thibaut Kosmala", 491);
+// Cette ligne écrit l'objet suivant:
+{
+  title: "L'histoire de Hulk",
+  author: "Thibaut Kosmala",
+  page: 491
+}
+
+/*
+Avec une classe Livre, vous pouvez créer facielement et rapidement de nouveaux objets Livre.
+
+Gardez cette notion de classe en tête, on y reviendra un plus loin en abordant la notion de propriété de classe et les méthodes d'instance.
+*/
+
+/** Pratiquez les classes **/
+
+/* Rendez-vous sur la branche P1C3_exo3
