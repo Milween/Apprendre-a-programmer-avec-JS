@@ -89,5 +89,61 @@ numberOfCats /= 3; // vaut 12/3 = 4;
 /* 
 Pour vous entraîner à créer des variables, rendez-vous sur cet exercice CodePen. https://codepen.io/nicolaspatschkowski/pen/BaNxgzN
 
+ce rendre sur la branch P1C1_exo2 : https://github.com/Milween/Apprendre-a-programmer-avec-JS/tree/P1C1_exo2
 */
 
+// Mutation des variables :
+
+/*
+Une variable est une vase mutable, c'est-à-dire qu'elle peut changer au cours du temps. On la déclare avec le mot clé 'let' suivi d'un nom de variable et on lui affecte une valeur de départ. Par la suite, on va pouvoir changer la valeur de cette variable autant de fois que l'on souhaite.
+/*
+
+/*
+On crée un compteur à 0. A chaque fois que l'on clique sur un bouton la valeur augmente de 1.
+*/
+
+let compteur = 0;
+compteur++;
+compteur = 10;
+
+
+// Découvrez les constantes :
+
+/*
+Dans de nombreux programmes, certaines données ne seront pas modifiées pendant l'exécution du programme. C'est le cas par exemple du nom d'une entreprise, de la date de naissance d'un utilisateur, ou du nombre d'heures dans une journée. Pour s'assurer de ne pas réaffecter par inadvertance de nouvelles valeurs à ces données, vous allez utilisez des CONSTANTES.
+*/
+
+/*
+Ce sont simplement des variables qui ne seront pas MUTABLES. On donnera une valeur de départ et on ne pourra plus changer la valeur par la suite. Ainsi s'il y a une erreur de logique dans votre code changeant la vlaeur de la variable (constante) qui de devait pas changer, JavaScript retournera une erreur.
+*/
+
+// par exemple:
+const nombrePostParPage = 20;
+nombrePostParPage = 30; 
+console.log(nombrePostParPage); // Retournera une erreur dans la console car ne peut plus changer sa valeur.
+
+// Pratiquez les constantes :
+
+/*
+C'est le moment de mettre en oeuvre ce que vous avez appris sur les opérateurs ! Rendez-vous sur ce CodePen.
+
+Voici un composant qui déconstruit une journée en heures, minutes et secondes.
+Dans l'espace alloué, créeez les trois constantes suivantes : 
+- hoursPerDay : heures par jour.
+- minutesPerHour : minutes par heure.
+- secondesPerMinutes : secondes par minute.
+
+lien vers l'exercice GitHub : 
+*/
+
+// En résumé :
+
+/*
+Dans ce chapitre, vous avez appris les bases des variables en JS, vous savez désormais :
+
+- DECLARER les variables : par le mot let 'let' et un nom en 'camelCase' et les INITIALISER '=':
+
+- MODIFIER le contenu d'une variable en la réaffectant, ou avec des opérateurs.
+
+- utiliser des CONSTANTES pour éviter le remplacement d'éléments de données essentiels.
+*/
