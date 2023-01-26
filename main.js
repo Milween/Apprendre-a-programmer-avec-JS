@@ -135,3 +135,15 @@ Gardez cette notion de classe en tête, on y reviendra un plus loin en abordant 
 /** Pratiquez les classes **/
 
 /* Rendez-vous sur la branche P1C3_exo3
+
+/*** EN RESUME ***/
+
+/*
+Vous avez fait beaucoup de chemin dans ce chapitre ! Vous avez découvert :
+
+- Les objets avec les paires clés-valeurs en notation JSON : 
+  Il permettent d'enregistrer plusieurs éléments de données associés dans une même variable.
+
+- La notation pointée (dot) qui donne accès aux valeurs d'un objet et à la possibilité de les modifier.
+
+- Les classes, et comment l'utilisation des classes peut vous permettre de créer des objets plus facilement et de façon plus lisible.
