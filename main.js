@@ -1,9 +1,8 @@
-// Pratiquez l'utilisation des opérateurs'
+// Pratiquez la création de variables.
 
 /*
-1. Dans l'éditeur JavaScript; créez deux variables episodeTime et commercialTime avec les valeurs (45 et 5).
-
-2. A l'aide de deux variables de deux variables de temps que vous vevez de créer, ainsi que du nombre d'épisodes et du nombre de saisons, créez une variable nommée totalShowTime qui contient le temps de visionnage totam de cette série.
+1. Créez une variable appelée numberOfSeasons avec la valeur 6.
+2. Créez une variable appelée numberOfEpisodes avec la valeur 12 
 */
 
 /*
@@ -35,20 +34,12 @@ let NumberOfDogs = 4;
 /*
 Ici, nous déclarons (créons) et initialisons (donnons une valeur à) deux variables : number numberOfCats et numberOfDogs.
 */
-let numberOfEpisodes = 6;
-let numberOfSeasons = 12;
 
 // ECRIRE LE CODE DE L'EXERCICE CI-DESSOUS :
 
-// 1.
-const episodeTime = 45;
-const commencialTime = 5;
-
-// 2.
-let totalShowTime = (episodeTime + commencialTime) * numberOfSeasons * numberOfEpisodes;
+let numberOfEpisodes = 6;
+let numberOfSeasons = 12;
 
 // code de l'exercice.
 let paragraph = document.querySelector('#info');
-paragraph.innerText = `${numberOfSeasons} seasons, ${numberOfEpisodes} episodes per season
-
-Total viewing time: ${totalShowTime} minutes`
+paragraph.innerText = `${numberOfSeasons} seasons, ${numberOfEpisodes} episodes per season`;
