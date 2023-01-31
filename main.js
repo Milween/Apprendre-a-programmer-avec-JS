@@ -71,3 +71,48 @@ Dans ce chapitre, vous avez :
 - Appris à créer du JS pour les pages web.
 
 - Découvert que le JS peut aussi s'utiliser pour des serveurs.
+
+/** Découvrez l'égalité : == ou === **/
+
+/*
+En JavaScript, toutes les égalités ne sont pas nées égales :
+
+Il y a deux façons de vérifier si deux valeurs sont égales en JS : == et ===, aussi appelées égalité SIMPLE et égalité STRICTE :
+
+- l'égalité SIMPLE vérifie la VALEUR, mais pas le type. Donc ceci renvoie la valeur TRUE. (5 == '5')
+
+- par contre, l'égalité stricte vérifie à la fois la VALEUR et le TYPE. Donc : 5 === '5' renvoie FALSE, car on compare un NUMBER et une STRING.
+
+De même, il y a deux opérations d'inégalité, ' != ' et ' !== ', avec la même distinction.
+
+/* Comprendre les conditions multiples */
+
+/* Dans ceraines situations, vous souhaitez vérifier plusieurs conditions pour un même résultat, par exemple dans la même instruction if. Pour cela, il existe des OPÉRATEURS LOGIQUES.
+
+- && : ET logique, pour vérifier si deux conditions sont TOUTES LES DEUX vraies.
+
+- || : OU logique, pour vérifier si AU MOINS UNE condition est vraie.
+
+- ! : NON logique, pour vérifier si une condition n'est PAS vraie.
+*/
+
+let userLoggedIn = true;
+let userHasPremiumAccount = true;
+let userHasMegaPremiumAccount = false;
+
+userLoggedIn && userHasPremiumAccount; // true
+userLoggedIn && userHasMegaPremiumAccount; // false
+
+userLoggedIn || userHasPremiumAccount; // true
+userLoggedIn || userHasMegaPremiumAccount; // true
+
+!userLoggedIn; // false
+!userHasMegaPremiumAccount; // true
+
+/*
+Bien sûr, ces opérateurs peuvent être mélangés et combinés en fonction de vos besoins précis.
+*/
+
+/** Pratiquez les opérateurs logiques **/
+
+// rendez-vous sur la branch git P2C2_exo2
