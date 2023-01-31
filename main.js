@@ -116,3 +116,139 @@ Bien sûr, ces opérateurs peuvent être mélangés et combinés en fonction de 
 /** Pratiquez les opérateurs logiques **/
 
 // rendez-vous sur la branch git P2C2_exo2
+
+
+/** Appréhendez un notion importante : le scope des variable **/
+
+/* En JS, les variables crées par let ou const ne peuvent être vues ou utilisées qu'à l'intérieur du bloc dans lequel elles sont déclarées.
+
+/* Note : Un BLOC DE CODE, aussi souvent apellé BLOC tout court, est une section de code incluse entre accolades {}.
+*/
+
+//Ce phénomène est appelé PORTÉE DES VARIABLES ou BLOCK SCOPE (en). Voici un exemple.
+
+let userLoggedIn = true;
+if (userLoggedIn) {
+  let welcomeMessage = 'Welcome back !'; // scopes
+} else {
+  welcomeMessage = 'Welcome new user !'; // scopes
+}
+
+console.log(welcomeMessage); // renvoie une erreur
+
+/*
+Dans ce code, nous avons deux blocs de code issus des l'instruction if / ekse. Ils sont mis en évidence dans notre exemple.
+*/
+
+/*
+Les deux blocs déclarent une variable par ' let welcomeMessage '. Néanmoins, ces variables ne sont disponibles qu'à l'intérieur des blocs où elles sont déclarées. 
+
+C'est pourquoi, quand vous essayez d'afficher le contenu de ' welcomeMessage' sur la console, vous obtenez une erreur, pour le code EN DEHORS des blocs, il n'y a pas de variable 'welcomeMessage'.
+*/
+
+/*
+Donc, comment obtenir le comportement voulu ? Comment passer des valeurs vers l'extérieur depuis l'intérieur d'un bloc de code ?
+*/
+
+/* 
+Pour cette situation, un méthode pourrait être de déclarer la variable dans la portée EXTÉRIEURE, puis de la modifier à l'intérieur des blocs if / else.
+*/
+
+let userLoggedIn = true;
+let welcomeMessage;// Déclarer la variable ici !
+
+if (userLoggedIn) {
+  let welcomeMessage = 'Welcome back !'; // modifier la variable extérieure.
+} else {
+  welcomeMessage = 'Welcome new user !'; // modifier la variable extérieure.
+}
+
+console.log(welcomeMessage); // imprime 'welcome back !'
+
+/*
+Ici, DU FAIT que la variable soit déclarée dans le scope parent, elle est disponible et accessible partout, et peut-être modifiée correctement.
+*/
+
+
+/** Utiliser les instructions switch **/
+
+/*
+Et si vous souhaitez vérifier la valeur d'une variable par rapport à une liste de valeurs attendues, et réagir en conséquence ? Pour cela, vous pouvez utiliser l'instruction 'switch' :
+
+Supposons que vous ayez quelques objets utilisateurs, vous souhaitez vérifier quel type de compte a chacun, pour envoyer un message personnalisé :
+*/
+
+let firstUser = {
+  name: 'Will Alexander',
+  age: 33,
+  accountLevel: 'normal'
+};
+
+let secondUser = {
+  name: 'Sarah kate',
+  age: 21,
+  accountLevel: 'premium0'
+};
+
+let thirdUser = {
+  name: 'Audrey Simon',
+  age: 33,
+  accountLevel: 'mega-premium'
+};
+
+/* 
+Vous pouvez ici utiliser une instruction ' SWITCH ' qui prend la variable à vérifier et une liste de valeurs, comme différents cas :
+*/
+
+switch (firstUser, accountLevel) {
+  case 'normal' :
+    console.log('You have a normal account !');
+  break;
+  case 'premium' :
+    console.log('You have a premium account !');
+  break;
+  case 'mega-premium':
+    console.log('You have a mega premium account !');
+  break;
+
+  default:
+    console.log('Unknown account type');
+}
+
+/* Après le code à exécuter dans chaque instruction ' case ', ajoutez l'instruction ' break '. Si vous ne le faites pas, JavaScript continuera l'exécution des cas suivants (en cascade).
+
+Jusqu'à rencontrer une instruction break ou la fin de l'instruction 'switch'. Comme vous pouvez le voir dans l'exemple, vous pouvez aussi ajouter un cas default qui ne sera exécuté que si la variable que vous vérifiez ne correspond à aucune des valeurs répertoriées.
+
+Le switch peut servur dans différents cas mais surtouts rendre plus facile à lire l'enchaînement de condition if / else.
+
+Par exemple voici commment on aurait écrit l'exemple précédent avec des if / else :
+*/
+
+if (firstUser.accountLevel === 'normal') {
+  console.log('You have a normal account !');
+} else if (firstUser.accountLevel === 'premium') {
+  console.log('You have a premium account');
+} else if (firstUser.accountLevel === 'mega-premium') {
+  console.log('You have a mega premium account');
+} else {
+  console.log('Unknown account type');
+}
+
+
+/*** EN RÉSUMÉ ***/
+
+/*
+Félicitations pour l'achèvement de ce chapitre ! Nous avons traité beaucoup de choses ici. Vous avez :
+
+- Appris le fonctionnement des instructions : if / else.
+
+- Vu les différents types de conditions pouvant être utilisés pour les instructions if / else.
+
+- Appris à regrouper les différentes conditions avec des opérateurs logiques.
+
+- Exploté la portée des variables, et les conséquences qu'elle a sur la structure du code.
+
+- Découvert l'instruction 'switch' pour comparaison à une liste de valeurs attendues.
+
+Dans le chapitre suivant, nous allons nous intéresser à la répétition de tâches avec des BOUCLES.
+*/
