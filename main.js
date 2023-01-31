@@ -1,22 +1,22 @@
 // PRATIQUEZ LES CONDITIONS if/else
 
 /*
-Dans cet exercice, nous allons mettre en place un contrôle de l'âge pour afficher un contenu. Sur notre page, il y a un input text qui demande de saisir votre âge, et un bouton pour valider. Si on est majeur, donc 18 ans et plus, on affiche le message autorisé, sinon on affiche une alerte disant que l’on n’est pas autorisé.
+Nous reprenons l’exercice précédent avec une checkbox servant à indiquer si le contrôle parental est activé ou non. On se retrouve avec 2 situations :
 */
 
 /*
-Pour réaliser cet exercice, voici comment vous allez procéder :
+- Le contrôle parental est activé ET il faut être majeur pour accéder au contenu.
 
-1. Vous allez lire le code JavaScript, qui est intégralement commenté, pour bien comprendre à quoi sert chaque élément, et surtout les variables à votre disposition. Il y a sûrement des éléments que vous ne comprenez pas car vous n’avez pas encore vu comment manipuler du HTML en JavaScript, mais ici vous n’avez qu’à exploiter les variables et fonctions déjà codées.
+- Le contrôle parental est désactivé ET tout le monde accède au contenu.
 
-2. Vous allez écrire une condition if/else entre les lignes 'INSERER VOTRE CODE' qui appellera la fonction refuser() si l'âge saisi correspond à un mineur, et la fonction valider() s’il est majeur.
+Il y a donc une notion de contrôle parental qui se retrouve dans une nouvelle variable dans le code.
 
-3. Attention, l'âge de la majorité a été stocké dans la variable ageMajorite, donc il faut utiliser cette variable dans la condition.
+Votre mission est d'écrire la condition de la même manière que l'exercice précédent, en prenant en compte la nouvelle variable 'isControlParentalActive'.
 
-Une fois que vous aurez codé la bonne condition, vous pourrez enchaîner les tests en saisissant différents âges et en validant.
+Avant de commencer à coder votre solution, n'hésitez pas à regardez comment la variable 'isControleParentalActive' est obtenue.
 */
 
-// CODE JAVASCRIPT De L'EXERCICE.
+// CODE JAVASCRIPT DE L'EXERCICE.
 
 // On pointe sur l'élément de message.
 const espaceMessage = document.getElementById('message')
@@ -27,8 +27,12 @@ const bouton = document.getElementById('bouton')
 // On pointe sur l'élément de champ de saisie.
 const ageInput = document.getElementById('age')
 
+// On pointe sur l'élément de la checkbox de contrôle parental
+const parentControl = document.getElementById('parental')
+
 // On défni la variable 'age' qu'on utilisera et une variable définissant l'âge de la majorité.
 let age;
+let isControlParentalActive;
 let ageMajorite = 18;
 
 // fonction qui affichera le message de validation.
@@ -50,10 +54,15 @@ function onConfirm() {
     alert('Ceci n\'est pas un nombre')
     return;
   }
+  
+  // On récupère la valeur de la checkbox de contrôle parental.
+  isControlParentalActive = parentControl.checked;
+  // console.log('actif', isControlParentalActive)
+
 
   // INSERER VOTRE CODE EN DESSOUS :
 
-  if (age < ageMajorite) {
+  if (age < ageMajorite && isControlParentalActive) {
     refuser()
   } else {
     valider()
