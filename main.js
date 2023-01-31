@@ -1,12 +1,15 @@
-/*** Pratiquez la création d'un array ***/
+/*** Pratiquez le travail avec les arrays ***/
 
 /*
-Dans un exercice précédent, vous avez créé trois instances de la classe 'Episode' dans des variables séparées. Dans cet exercice, vous allez regrouper ces variables dans un seul tableau (array).
+Dans cet exercice, un Array vide 'episodes' a déjà été crée.
 
-1. Créer un array stocké dans une variable 'episodes', et peuplez-le avec les trois variables
-  'firstEpisode', 'secondEpisode', 'thirdEpisode'.
+1. En utilisant la méthode 'push' du tableau 'episodes',ajoutez les épisodes un par un. Ajoutez deux fois le troisième épisode.
 
-2. Essayez de changer l'ordre dans lequel vous avez ajoutés les épisodes, et regardez ce qu'il se passe lorsque vous rafraîchissez la page.
+2. Avec la méthode 'pop', retirez l'épisode superflu du tableau 'episodes'.
+
+3. Créez une variable appelée 'numberOfEpisodes' qui contient la 'length' du tableau 'episodes'.
+
+4. Amusez-vous à ajouter et retirer des épisodes, et vérifiez que tout fonctionne correctement.
 
 */
 
@@ -24,15 +27,23 @@ let thirdEpisode = new Episode ("Le musée hanté", 80, false)
 
 // Insérer votre code ci-dessous :
 
-let episodes =  [firstEpisode, secondEpisode, thirdEpisode]
-console.log(episodes[0])
+let episodes =  [];
+console.log('tableau vide', episodes)
+episodes.push(firstEpisode, secondEpisode, thirdEpisode, thirdEpisode);
+console.log('tableau rempli', episodes)
+episodes.pop();
+console.log('tableau -1', episodes)
+
+let numberOfEpisodes = episodes.length;
 
 // Code de l'exercice.
+
   //on sélectionne notre body
 const body = document.querySelector('body');
+document.querySelector('#episodes').innerText = numberOfEpisodes;
 
   // on crée une boucle pour parcourir touts les éléments du tableau ' episode '.
-for (let i = 0; i < 12 ; i++) {
+for(let episode of episodes) {
 
   // On crée une div 'séries-frame'
   let newDiv = document.createElement('div');
@@ -44,9 +55,9 @@ for (let i = 0; i < 12 ; i++) {
 
   // On crée un paragraphe qui prendra les valeurs de Episode pour chaque élément du tableau (épisode)
   let newParagraph = document.createElement('p');
-  newParagraph.innerText = `${episodes[i].title}
-  ${episodes[i].duration} minutes
-  ${episodes[i].hasBeenWatched ? 'Already been Watched' : 'Not yet watched'}`;
+  newParagraph.innerText = `${episode.title}
+  ${episode.duration} minutes
+  ${episode.hasBeenWatched ? 'Already been Watched' : 'Not yet watched'}`;
 
   // 'newDiv' prend comme enfant 'newTitle' et 'newParagraph' / 'newDiv' est intégré dans body.
   newDiv.appendChild(newTitle)

@@ -23,3 +23,7 @@ body {
 .series-frame h2 {
   margin-right: 50px;
 }
+
+p {
+  padding: 20px;
+}
