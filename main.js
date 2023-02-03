@@ -1,169 +1,128 @@
-/*** Utilisez la bonne boucle pour répéter les tâches (for, while) ***/
+/*** Gérez des erreurs et des exceptions dans votre programme ***/
 
 /*
-En programmation, il y a des ensembles d'instructions à répéter plusieurs fois. Parfois, vous connaîtrez à l'avance le nombre de répétitions, d'autres fois non. 
-
-Il est aussi possible que le nombre de fois n'importe pas, et que vous souhaitiez répéter le code jusqu'à atteindre une certaine condition. Pour tous ces cas, nous utiliserons des BOUCLES.
+Ne pas faire d'erreur lorsque l'on code est pratiquement impossible. Dans ce chapitre, vous allez découvrir les différents types d'erreurs.
 */
 
-/** Utilisez la boucle ' for ' pour savoir 'combien de fois' ? **/
+
+/** Découvrez les 3 types d'erreurs **/
 
 /*
-Suppsons que ayez à faire faire embarquer 10 passagers, et que pour l'instant vous n'accordiez pas d'importance à l'ordre de leur embarquement. Utilisez une boucle 'for' pour les embarquer un par un jusqu'à atteindre 10 :
+En JavaScript, comme dans beaucoup d'autres langages de programmation, on distingue généralement trois types d'erreur.
 */
 
-const numberOfPassengers = 10;
+// Appréhendez les erreurs de synthaxe :
 
-for (let i = 0; i < numberOfPassengers; i++) {
-  console.log("passagers embarqué !");
+/*
+Les erreurs de 'syntaxe' (ou erreurs d'analyse) surviennent quand vous avez fait une faute d'écriture dans votre code. Il peut s'agir de l'oubli ou de l'ajout d'un crochet ou d'une accolade, d'une faute d'orthographe sur un mot clé, else ou switch, par exemple. 
+
+Elles sont généralement assez faciles à corriger (même si vous pouvez passer beaucoup du temps à retrouver les parenthèses manquantes !), et beaucoup d'éditeurs de texte et d'environnements de développement intégrés mettent automatiquement en évidence les erreurs de syntaxe.
+*/
+
+// Voici quelques exemples d'erreurs de syntaxe, pourrez-vous les trouver ?
+
+if (seatsRemaining) {
+  passergersBoarded+;
 }
 
-/* première partie (let i = 0)
-Pour cette boucle for  , créez une variable d'indice i  qui sert de compteur pour le nombre d'exécutions de la boucle. C'est pour cette raison qu'elle démarrera à zéro, car on n'a pas encore parcouru la boucle.
-*/
-
-/* Deuxième partie (i < numberOfPassengers)
-La deuxième commande dans les parenthèses   for  est la condition de poursuite de la boucle : dès qu'elle s'évalue comme   false  , on quitte la boucle. Dans ce cas, vous souhaitez l'exécuter autant de fois qu'il y a de passagers, donc quand l'indice  i  atteint 10 (après 10 boucles), vous souhaitez l'arrêter, car il n'y a plus de passager.
-*/
-
-/* Troisième partie : i++
-La troisième commande demande à la boucle 'for' s'incrémenter 'i' (ajouter 1) à chaque itération. C'est ce qui permet de suivre le nombre d'exécution de la boucle. 
-
-JavaScript termine la boucle avant d'exécuter tout autre code, donc si vous deviez écrire ceci :
-*/
-
-const numberOfPassenger = 10;
-
-for (let i = 0; i < numberOfPassenger; i++) {
-  console.log("passagers embarqué !");
+while (seatsRemaining > 0 {
+  passergersBoarded++;
 }
-console.log('Tous les passagers ont embarqués !');
 
-/*
-La dernièere sortie de console s'imprimerait après l'embarquement des 10 passagers.
+if (seatsRemaining > 0) {
+  passergersBoarded++;
+} else {
+  passergersStillBoarded = 0;
 
-le travail sur des indices, c'est bien, mais si vous souhaitiez utiliser un tableau de passagers pour les embarquer dans un ordre précis ?
+  /*
+  1. Il manque un +.
+
+  2. il manque une parenthèse, parenthèse non fermée.
+
+  3. accolade manquante.
 */
 
-
-/** Travaillez sur des tableaux 'for...of' et 'for.. in' **/
-
-/*
-Dans beaucoup de cas, vous aurez un tableau et devrez le parcourir, pour faire quelque chose sur chaque élément. Il peut s'agir de mettre à jour les prix sur un menu, de traiter les données d'une base de données, ou d'embarquer des passagers dans l'ordre.
-*/
+/* Découvrez les erreurs logiques */
 
 /*
-L'ancienne façon de parcourir un tableau dans une boucle était d'utiliser la boucle   for  vue précédemment avec sa propriété   length  . Par exemple, avec un tableau appelé ' passengers ' :
+Les erreurs logiques sont un peu plus vicieuses. Elles surviennent quand vous avez fait des erreurs dans la logique de votre programme. Voici quelques exemples :
+
+- Affectation d'une valeur erronée à une variable.
+
+- Mélange de conditions dans les instructions 'if':
+
+- Ordre incorrect d'écriture des lignes ou blocs de code.
+
+Avec ce genre d'erreur, votre programme pourra avoir un comportement inattendu dans le meilleur des cas. Ou planter dans le pire des cas !
+
+Les erreurs logiques sont aussi plus difficile à trouver et à corriger parce que le code n'est pas faux, il ne fait simplement pas ce que vous souhaitez qu'il fasse !
+
+Exemple d'un code avec erreur de logique :
 */
 
-// for (let i = 0; i < passengers.length; i++) {
-//   console.log('Passager embarqué !');
-// }
+// On simule avoir 22 ans donc être majeur
+const monAge = 22;
 
-/*
-Bien que ceci fonctionne, il y a deux façons plus faciles de parcourir en boucle de stableaux (ou de faire une itération sur leurs éléments).
-*/
-
-/* La boucle 'For ..in' */
-
-/*
-La boucle 'for ...in' est très comparable à l'exemple de boucle 'for' normale, mais elle est plus facile à lire, et effectue tout le travaol d'itération pour vous :
-*/
-
-const passengers = [
-    "Will Alexander",
-    "Sarah Kate'",
-    "Audrey Simon",
-    "Tao Perkington"
-]
-
-for (let i in passengers) {
-  console.log('Embarquement du passager ' + passengers[i]);
+if (monAge < 18) {
+  console.log('Vous êtes majeur');
+} else {
+  console.log('vous êtes mineur');
 }
 
 /*
-Comme dans l'exemple précédent, 'i' démarre automatiquement à zéro, et s'incrémente à chaque boucle. Vous imprimez donc 'passengers[0], puis 'passengers[1]', puis 'passengers[2]', ect... jusqu'à terminer l'itération sur tous les passagers. Vous pouvez bien sûr imprimer chaque élément sur la console, car chacun est une chaîne contenant le nom du passager.
-/*
+Le code a pour objectif d’afficher “vous êtes majeur” quand vous avez 18 ans ou plus, ou alors “vous êtes mineur” si vous avez moins de 18 ans.
 
-/* La boucle 'for ...of' */
+Mais ce code comporte une erreur de logique sur la condition if et affiche “vous êtes mineur” alors que l'âge de comparaison est 22 ans.
 
-/*
-Pour les cas où l'indice précis d'un élément n'est pas nécessaire pendant l'itération, vous pouvez utiliser une boucle   for… of  :
-
-En reprenant l'exemple précédent et en utilisant à la place une boucle 'for ...of', vous obtenez :
+La difficulté ici est que rien ne vous indiquera que c’est une erreur de logique. Seules l’analyse et la relecture de votre code permettront de déceler le souci.
 */
 
-for (let passenger of passengers) {
-console.log('Embarquement du passager ' + passenger);
+/* Gérez les erreurs d'exécution */
+
+/*
+Les erreurs d'exécution sont un peu différentes. Elles tendent à survenir quand quelque chose d'inattendu se produit dans votre application.
+
+Il s'agit souvent de quelque chose associé aux ressources extérieures (connexions réseau, appareils physiques, etc.) ou à une saisie/erreur humaine.
+*/
+
+/*
+Mais il y a des situations où vous savez par avance que ce type d'erreur est susceptible de survenir.
+
+Dans ces situations, vous pouvez prévoir du code de traitement d'erreur. De cette façon, une erreur ne fera pas planter votre programme, et pourra être corrigée.
+*/
+
+/*
+Une façn de traiter les erreurs potentielles consiste à utiliser une instruction 'if / else' pour vérifier la validité des données :
+*/
+
+if (dataExists && DataIsValid) {
+  // utiliser les données ici
+} else {
+  // gérer l'erreur ici
 }
 
 /*
-Ceci produit exactement le même résultat, mais de façon plus lisible, car vous n'avez pas à vous inquièter des indices et des tableaux : vous recevez simplement chaque élément dans l'ordre. C'est encore plus utile si le tableau est un peu plus complexe et contient par exemple des objets :
+Vous pouvez aussi utiliser des blocs 'try / catch' pour essayer 'try' un code pouvant potentiellement renvoyer une erreur, et détecter 'catch' les erreurs eventuelles survenues :
 */
 
-const passenger = [
-  {
-      name: "Will Alexander",
-      ticketNumber: 209542
-  },
-  
-  {
-      name: "Sarah Kate",
-      ticketNumber: 169336
-  },
-  
-  {
-      name: "Audrey Simon",
-      ticketNumber: 779042
-  },
-  
-  {
-      name: "Tao Perkington",
-      ticketNumber: 703911
-  }
-]
-
-for ( let pass of passenger) {
-  console.log('Embarquement du passager ' + pass.name + ' avec le numéro de ticket ' + pass.ticketNumber);
+try {
+  // code suceptible à l'erreur ici
+} catch (error) {
+  // réaction aux erreurs ici
 }
 
-/** Pratiquez les boucles 'FOR' **/
-
-// Rendez-vous à la branche P2C3_ exo1
-
-
-/** Utilisez la boucle WHILE **/
-
 /*
-Une boucle WHILE vérifie si une condition est vraie. Si c'est le cas, la boucle se poursuit, sinon elle s'arrête. En revenant à l'exemple de l'embarquement d'avion : supposons que vous ayez des variables représentant le nombre de sièges restants et le nombre de passagers restants. 
-
-Vous souhaitez continuer l'embarquement jusqu'à l'épuisement du nombre de sièges ou de passagers.
-*/
-
-let seatLeft = 10;
-let passengersStillToBoard = 8;
-let passengerBoarded = 0;
-
-// Tant qu'il y a des sièges disponibles et des passagers à faire embarquer :
-while (seatLeft > 0 && passengersStillToBoard > 0) {
-  passengerBoarded++ // Un passager embarque.
-  passengersStillToBoard--; // il y a un passager de moins à faire embarqué.
-  seatLeft--; // Il y a un siège de moins disponible.
-}
-
-console.log('passengers à bord', passengerBoarded, 'siège restant ', seatLeft)
-
-/*
-Cette boucle WHILE pousuit son exécution jusqu'à ce que l'un des nombres ' SeatsLeft ' et ' passengersStillBoard ' atteigne zéro, et à ce point, elle se termine.
+Quand vous aurez plus d'expérience en développement JavaScript, vous saurez où les erreurs peuvent survenir, et comment vous y préparer et les traiter correctement.
 */
 
 
 /*** EN RESUME ***/
 
 /*
-Dans ce chapitre, vous avez abordé deux façons de répéter les tâches :
+Dans ce chapitre, vous avez appris les trois types d'erreurs de programmation :
 
-- La boucle 'for' : pour un nombre d'itérations fixe;
+- Les erreurs de syntaxe : erreurs dans l'utilisation de JavaScript : fautes d'orthographe, crochets manquants, nombre de guillemets incorrect, etc. ;
 
-- La boucle 'while' : quand le nombre d'itérations nécessaires est inconnu.
-*/
+- les erreurs logiques – erreurs dans l'application du déroulement du programme, par exemple erreurs dans les conditions des instructions   if  ou oubli d'incrémentation de l'indice d'une boucle, pouvant potentiellement conduire à une boucle infinie ;
+
+- les erreurs d'exécution – erreurs souvent causées par des ressources externes telles que réseaux, bases de données ou utilisateurs ; elles peuvent être traitées en sachant où elles peuvent survenir, et par des techniques de traitement d'erreur telles que les blocs 'try / catch'.
