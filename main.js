@@ -131,3 +131,39 @@ for ( let pass of passenger) {
 
 // Rendez-vous à la branche P2C3_ exo1
 
+
+/** Utilisez la boucle WHILE **/
+
+/*
+Une boucle WHILE vérifie si une condition est vraie. Si c'est le cas, la boucle se poursuit, sinon elle s'arrête. En revenant à l'exemple de l'embarquement d'avion : supposons que vous ayez des variables représentant le nombre de sièges restants et le nombre de passagers restants. 
+
+Vous souhaitez continuer l'embarquement jusqu'à l'épuisement du nombre de sièges ou de passagers.
+*/
+
+let seatLeft = 10;
+let passengersStillToBoard = 8;
+let passengerBoarded = 0;
+
+// Tant qu'il y a des sièges disponibles et des passagers à faire embarquer :
+while (seatLeft > 0 && passengersStillToBoard > 0) {
+  passengerBoarded++ // Un passager embarque.
+  passengersStillToBoard--; // il y a un passager de moins à faire embarqué.
+  seatLeft--; // Il y a un siège de moins disponible.
+}
+
+console.log('passengers à bord', passengerBoarded, 'siège restant ', seatLeft)
+
+/*
+Cette boucle WHILE pousuit son exécution jusqu'à ce que l'un des nombres ' SeatsLeft ' et ' passengersStillBoard ' atteigne zéro, et à ce point, elle se termine.
+*/
+
+
+/*** EN RESUME ***/
+
+/*
+Dans ce chapitre, vous avez abordé deux façons de répéter les tâches :
+
+- La boucle 'for' : pour un nombre d'itérations fixe;
+
+- La boucle 'while' : quand le nombre d'itérations nécessaires est inconnu.
+*/
