@@ -1,83 +1,58 @@
-// PRATIQUEZ LES CONDITIONS if/else
+// PRATIQUEZ LES BOUCLES 'FOR' 
 
 /*
-Nous reprenons l’exercice précédent avec une checkbox servant à indiquer si le contrôle parental est activé ou non. On se retrouve avec 2 situations :
+Maintenant, vous devez implémenter du code qui remettra à zéro l'information de visionnage pour tous les épisodes. Vous allez accomplir cette tâche en itérant le tableau   episodes  en assignant la valeur false à la propriété   hasBeenWatched  de chaque épisode.
 */
 
 /*
-- Le contrôle parental est activé ET il faut être majeur pour accéder au contenu.
+Le tableau   episodes  a déjà été déclaré pour vous.
 
-- Le contrôle parental est désactivé ET tout le monde accède au contenu.
+1. Itérez le tableau   episodes  et assignez la valeur false à la propriété   hasBeenWatched  de chaque épisode, en utilisant une boucle for, for…in ou for…of.
 
-Il y a donc une notion de contrôle parental qui se retrouve dans une nouvelle variable dans le code.
-
-Votre mission est d'écrire la condition de la même manière que l'exercice précédent, en prenant en compte la nouvelle variable 'isControlParentalActive'.
-
-Avant de commencer à coder votre solution, n'hésitez pas à regardez comment la variable 'isControleParentalActive' est obtenue.
+2. Maintenant, faites en sorte que tous les épisodes soient considérés comme ayant été vus. Cela fonctionne-t-il également ?
 */
 
 // CODE JAVASCRIPT DE L'EXERCICE.
 
-// On pointe sur l'élément de message.
-const espaceMessage = document.getElementById('message')
-
-// On point suyr l'élément de bouton.
-const bouton = document.getElementById('bouton')
-
-// On pointe sur l'élément de champ de saisie.
-const ageInput = document.getElementById('age')
-
-// On pointe sur l'élément de la checkbox de contrôle parental
-const parentControl = document.getElementById('parental')
-
-// On défni la variable 'age' qu'on utilisera et une variable définissant l'âge de la majorité.
-let age;
-let isControlParentalActive;
-let ageMajorite = 18;
-
-// fonction qui affichera le message de validation.
-function valider() {
-  espaceMessage.innerHTML = 'Vous êtes autorisé à entrer'
-}
-
-// fonction que affichera le message de refus.
-function refuser() {
-  alert('Cette espace est interdit aux personnes  mineurs');
-}
-
-// fonction qui vérifie l'input de l'utilisation et retournera en conséquence les fonctions.
-function onConfirm() {
-  // on répère la saisie de l'âge et on transforme le texte en nombre entier.
-  age = parseInt(ageInput.value);
-  // Si la saisie n'est pas un chiffre, on affiche un message d'erreur.
-  if(isNaN(age)) {
-    alert('Ceci n\'est pas un nombre')
-    return;
+class Episode {
+  constructor(title, duration, hasBeenWatched) {
+    this.title = title;
+    this.duration = duration;
+    this.hasBeenWatched = hasBeenWatched;
   }
-  
-  // On récupère la valeur de la checkbox de contrôle parental.
-  isControlParentalActive = parentControl.checked;
-  // console.log('actif', isControlParentalActive)
+}
 
+let episodes =  [
+  new Episode('Dark Beginnings', 45, true),
+  new Episode('The Mystery Continues', 45, false),
+  new Episode('An Unexpected Climax', 60, false)
+]
 
   // INSERER VOTRE CODE EN DESSOUS :
 
-  if (age < ageMajorite && isControlParentalActive) {
-    refuser()
-  } else {
-    valider()
+  for (let episode of episodes) {
+    episode.hasBeenWatched = false;
   }
-  
+
   // INSERER VOTRE CODE AU DESSUS :
-  ageInput.value = "";
+
+
+const body = document.querySelector('body');
+
+for (let episode of episodes) {
+  let newDiv = document.createElement('div');
+  newDiv.classList.add('series-frame');
+
+  let newTitle = document.createElement('h2');
+  newTitle.innerText = 'The Story of Tau';
+
+  let newParagraph = document.createElement('p');
+  newParagraph.innerText = `${episode.title}
+  ${episode.duration} minutes
+  ${episode.hasBeenWatched ? 'Already been watched' : 'Not yet watched'}`;
+
+  newDiv.append(newTitle)
+  newDiv.append(newParagraph)
+
+  body.appendChild(newDiv)
 }
-
-// Fonction qui permet de vider l'affichage de l'élément message.
-function Reset() {
-  espaceMessage.innerHTML = '';
-}
-
-// EVENTS
-
-bouton.addEventListener('click', onConfirm)
-ageInput.addEventListener('click', Reset)
