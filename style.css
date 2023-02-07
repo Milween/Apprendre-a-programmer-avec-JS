@@ -3,3 +3,34 @@
   margin: 0;
   padding: 0;
 }
+
+body, button {
+  background-color: #111;
+  color: #EEE;
+  font-family: 'Roboto Slab', serif;
+}
+
+.series-frame {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  max-width: 600px;
+  margin: 20px;
+  padding: 10px;
+  border: 2px solid #EEE;
+}
+
+#refresh {
+  font-size: 1.2em;
+  font-weight: 200;
+
+  margin-right:20px;
+  padding: 10px;
+  float: right;
+}
+
+#refresh:hover {
+  background-color: #000090;
+  cursor: pointer;
+}

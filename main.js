@@ -1,143 +1,112 @@
-/*** Définir des méthodes d'instance et des propriétés ***/
-
-/** Rappel sur la notion de propriété de classe **/
+/*** Pratiquer les méthodes d'instance. ***/
 
 /*
-Avant d'aborder la notion de méthode d'instance, sur laquelle nous allons nous concentrer dans ce cours, il est important d’expliquer la notion de propriété de classe.
+Voyons maintenant comment utiliser des méthodes d'instance pour enregistrer l'application de diffusion vidéo.
 
-C’est une variable interne à cette classe que l’on peut définir par défaut et faire évoluer au fur et à mesure de l’exécution de notre code.
+Plutôt que d'utiliser une fonction pour calculer la note moyenne pour une série, on a décidé que la classe Show ('Série') devrait gérer les nouvelles notes automatiquement.
 
-Il n’est pas rare d’utiliser le terme “attribut” au lieu de "propriété", mais cela représente bien la même chose.
+Comme vous pouvez le constater, la classe (show) contient un array ratings, pour les notes, qui est initialisé vide, et une propriété 'averageRating' (note moyenne) de zéro.
+
+1. Déclarer une méthode dans la classe 'show' appelée 'addRating()'. Elle prendra une 'rating' (la note) qui sera un nombre en 1 et 5, comme paramètre.
+
+2. La méthode addRating() doit :
+
+  - Ajouter la note reçue au tableau 'ratings' de l'instance.
+  - Recalculer la valeur 'averageRating' de l'instance.
+
+Cliquez sur le bouton 'checkRatings' pour vérifier les séries se mettent à jour correctement. Vous pouvez cliquer plusieurs fois sur le bouton pour voir l'évolutions des notes moyennes.
 */
 
-/*
-Prenons l'exemple d'une classe qui représenterait un compte bancaire, et que l'on appellerait du coup 'BankAccount'.
+// INSERER VOTRE CODE CI_DESSOUS 
 
-On pourrait trouveer comme propriétés 'owner' (permettant d'identifier le propriétaire du compte).
-et 'balance' (permettant de connaître le montant disponible sur le compte).
+class Show {
+  constructor(title, numberOfSeasons) {
+    this.title = title;
+    this.numberOfSeasons = numberOfSeasons;
+    this.ratings = [];
+    this.averageRating = 0;
+  }
+  addRating(rating) {
+    this.ratings.push(rating);
+    let sum = 0;
+    for (let rating of this.ratings) {
+      sum += rating;
+    }
+    this.averageRating = sum / this.ratings.length;
+  }
+}
+// INSERER VOTRE CODE AU_DESSUS
 
-Ainsi, lorsque que l'on crée une instance de 'BankAccount' avec un propriétaire et un montant initial en argument, on pourra exploiter par la suite ces propriétés pour afficher leurs valeurs, les utiliser pour des calculs, les modifier, ect...
-*/
+// Code du l'exercice :
 
-/** Tirer parti des classes avec des méthodes d'instance **/
+const tau = new Show('The Story of Tau', 6)
+const colin = new Show('The Hero of Old Meldrum', 3)
+const clara = new Show('The Bugs of Isla Clara', 6)
 
-/*
-Si vous revenez au chapitre sur les classes, nous les avons utilisées pour créer des objets ayant certaines propriétés. 
+const shows = [tau, colin, clara]
 
-Maintenant que vous avez commencé à découvrir les fonctions, vous pouvez ajouter des méthodes d'instance à ces classes, pour augmenter leur puissance et leur utilité.
-*/
+const body = document.querySelector('body')
+const refresh = document.querySelector('#refresh')
 
-/*
-Une méthode d'instance est une fonction faisant partie d'une classe, et qui agit sur une instance de cette classe.
+refresh.addEventListener('click', () => {
+  removeShows();
+  console.log('1')
+  addRandomsRatings();
+  console.log('2')
+  updateShows();
+  console.log('3')
+})
 
-Reprenons notre exemple de  classe 'BankAccount' (compte bancaire) :
-*/
+function updateShows() {
+  for (let show of shows) {
+    const showPane = document.createElement('div');
+    showPane.classList.add('series-frame');
 
-class BankAccount {
-  constructor(owner, balance) {
-    this.owner = owner;
-    this.balance = balance;
+    const showHeading = document.createElement('h2');
+    showHeading.innerText = show.title;
+
+    const showDetails = document.createElement('p')
+
+    const seasons = document.createElement('p')
+    seasons.innerText = show.numberOfSeasons + ' seasons';
+
+    const ratings = document.createElement('p');
+    ratings.innerText = show.averageRating > 0 ? show.ratings.length + ' rating\n' + show.averageRating.toFixed(1) + ' stars' : 'No ratings yet';
+
+    showDetails.append(seasons)
+    showDetails.append(ratings)
+    showPane.append(showHeading)
+    showPane.append(showDetails)
+    body.append(showPane)
   }
 }
 
-/* 
-Vous pouvez ensuite créer une instance de cette classe appelée 'newAccount' (nouveau compte) :
-*/
-
-const newAccount = new BankAccount('Thibaut Kosmala', 500)
-
-/* Important :
-N'oubliez pas qu'un objet (une instance d'une classe est un objet) est un type par référence, donc vous pouvez toujours apporter des modifications à l'instance de 'newAccount',
-La partie constante désigne une REFERENCE à cette instance.
-*/
-
-/*
-Telle quelle, l'instance n'est pas très utile. Vous pourriez afficher son solde à la console par    newAccount.balance  , mais si on pensait plutôt à ajouter une mise en forme ? Vous pouvez pour cela ajouter une méthode à la classe !
-*/
-
-class bankAccount {
-  constructor(owner, balance) {
-    this.owner = owner;
-    this.balance = balance;
-  }
-  showBalance() {
-  console.log("Solde: " + this.balance + ' EUR');
-  }
-}
-
-/*
-La nouvelle méthode ci-dessus, déclarée par son nom suivi par  (), utilise le mot clé   this  pour accéder à la propriété   balance  de l'instance, et l'afficher sur la console avec une mise en forme supplémentaire.
-
-Ceci signifie que vous pouvez utiliser la notation dot sur l'instance   newAccount  pour appeler sa méthode   showBalance()  :
-*/
-
-const willAccount = new bankAccount('will', 1400)
-
-willAccount.showBalance(); // imprime "Solde: 1400 EUR" dans la console.
-
-/*
-Vous pouvez aussi ajouter des méthodes capables de modifier les propriétés de l'instance. 
-
-Dans ce cas, ajoutez les méthodes deposit() (dépôt) et withdraw() (retrait) à la classe, en n'oubliant pas que les deux ont besoin d'un paramètre amount(montant) (parce que vous devez savoir combien déposer ou retirer !) :
-*/
-
-class Bankaccount {
-  constructor(owner, balance) {
-    this.owner = owner;
-    this.balance = balance;
+function removeShows() {
+  const children = [];
+  for (let childNode of body.childNodes) {
+    children.push(childNode);
   }
 
-  showOwner() {
-    console.log('Propriétaire du compte : ' + this.owner)
-  }
-
-  showBalance() {
-    console.log('Solde : ' + this.balance + ' EUR.')
-  }
-
-  deposit(amount) {
-    console.log('Dépôt de ' + amount + ' EUR.')
-    this.balance += amount;
-    this.showBalance();
-  }
-
-  withdraw(amount) {
-    if (amount > this.balance) {
-      console.log('Retrait refusé !')
-    } else {
-      console.log('Retrait de ' + amount + ' EUR.')
-      this.balance -= amount;
-      this.showBalance();
+  for (let child of children) {
+    if (child.tagName == 'DIV') {
+      body.removeChild(child)
     }
   }
 }
 
-const ThibautAccount = new Bankaccount('Thibaut', 2000)
+function addRandomsRatings() {
+  for (let show of shows) {
+    if (Math.random() >= 0.2) {
+      // numberOfRatings => nombre aléatoire entre 1 à 4.
+      const numberOfRatings = Math.floor(Math.random() * 4 + 1)
+      // Parcours tous les ratings générés par 'numberOfRatings', pour chacun d'eux donne lui la valeur de 'ratings'.
+      for (let i = 0; i < numberOfRatings; i++) {
+        // ratings => nombre aléartoire entre 1 et 5.
+        const ratings = Math.floor(Math.random() * 5 + 1);
+        show.addRating(ratings)
+      }
+    }
+  }
+}
 
-ThibautAccount.showOwner();
-ThibautAccount.showBalance();
-ThibautAccount.deposit(300);
-ThibautAccount.withdraw(1300);
-
-/*
-La méthode deposit() affiche le montant du dépôt sur la console, ajoute le montant au solde de l'instance, puis appelle la méthode showBalance() de l'instance. Imprimant ainsi le nouveau solde sur la console.
-*/
-/** Notes
- * Dans le corps d'une classe, le mot clé 'this' fait référence à l'INSTANCE créée de la classe. Dans cet exemple, il fait référence à 'ThibautAccount'.
-**/
-
-/*
-La méthode withDraw() : 
-
-1. Vérifie si le montant demandé est supérieur au solde actuel.
-  
-- Si c'est le cas, le retrait est refusé
-  
-- Sinon, il l'autorise, en soustrayant le montant du solde.
-
-2. Affiche le nouveau solde sur le console.
-*/
-
-/** Pratiquez les méthodes instance **/
-
-// Rendez-vous sur la branche P3C2_exo2
+updateShows();
