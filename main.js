@@ -1,48 +1,121 @@
-/*** Travaillez sur les fonctions ***/
+/*** Pratiquez la moyenne ***/
 
 /*
-Dans la deuxième partie de cours, vous avez découvert des notions de base en développement, poursuivons avec les fonctions.
+Avant de commencer l’exercice, nous allons juste revoir deux notions : le calcul d’une moyenne et comment parcourir un tableau.
+
+Calculer une moyenne :
+
+Lorsque l’on a un ensemble de valeurs, le calcul de la moyenne se fait en 3 étapes :
+
+- on fait la somme de toutes les valeurs (qu’on nommera 'sommeValeurs') ;
+
+- on compte le nombre de valeurs que l’on a (qu’on nommera 'nombreValeurs') ;
+
+- on calcule la moyenne en faisant moyenne = sommeValeurs / nombreValeurs.
+
+Parcourir un tableau :
+
+Lorsque l'on a un tableau (par exemple 'monTableau') on utilise la boucle for of, par exemple :
 */
 
-/** Comprendre les fonctions **/
+//for (let elementDeTableau of monTableau) {
+//  console.log(elementDeTableau); // affiche chaque élément individuellement.
+//}
 
 /*
-Une FONCTION est un bloc de code auquel vou attribuez un nom. Quand vous APPELEZ cette fonction, vous exécutez le code qu'elle contient. 
+Vous pouvez manipuler elementDeTableau comme bon vous semble (par exemple, l’ajouter dans un autre tableau, l'additionner avec une variable globale, etc.).
 
-Par exemple, dans les vidéos d'enregistrements d'écrans, vous m'avez vu appeler la fonction 'console.log()', qui contient du code permettant d'imprimer sur la console mais vous pouvez créer n'importe quelle fonction vous même :
+Votre application de streaming permet aux utilisateurs de noter les séries sur 5 étoiles. Votre collègue a construit le composant pour afficher la note moyenne pour chaque série, mais elle a besoin que vous écriviez la fonction qui va calculer cette moyenne.
+
+Elle vous explique que la fonction doit prendre un tableau de nombres comme argument, et retourner un nombre qui correspond à la note moyenne calculée.
+
+/** Suivez les étapes suivantes : **/
+
+/*
+1. Au bon endroit dans la déclaration de fonction, choisissez un nom pour le paramètre de votre fonction. N'oubliez pas, ce sera un tableau de nombres.
+Pour calculer une moyenne, on ajoute toutes les valeurs ensemble, puis on divise par le nombre de valeurs.
+
+2. Créez une variable qui stockera la somme de tous les nombres du tableau. Initialisez-la avec la valeur zéro.
+
+3. Sachant que le paramètre reçu est un tableau de nombres, utilisez une boucle for pour ajouter chaque nombre du tableau à votre variable   somme  .
+
+4. Créez une constante qui contient le résultat de la somme finale divisée par le nombre de valeurs dans le tableau reçu en argument.
+
+5. Faites en sorte que la fonction retourne le résultat final.
+
+6. BONUS : La troisième série, Les Insectes de L'Isla Clara, n'a pas l'air de fonctionner correctement. En fait, elle n'a pas encore reçu de note, donc le tableau passé ne contient aucune valeur.
 */
 
-// on défini la fonction :
-function afficherDeuxValeurs(valeur1, valeur2) {
-  console.log('Première valeur:' + valeur1);
-  console.log('Deuxième valeur:' + valeur2);
+/** INSERER VOTRE CODE CI-DESSOUS **/
+
+const calculateAverageRating = (ratings) => {
+  if(ratings.length === 0) {
+    return 0
+  }
+
+  let sum = 0;
+  for (let rating of ratings) {
+    sum += rating;
+  }
+
+  return sum / ratings.length
 }
 
-// On exécute la fonction
-afficherDeuxValeurs(12, 'Bonjour');
 
-// On obtient dans la console
-// Première valeur : 12
-// Deuxième valeur : Bonjour
+/** INSERER VOTRE CODE CI-DESSUS **/
+
+const tauRatings = [5, 4, 5, 5, 1, 2];
+const colinRatings = [5, 5, 5, 4, 5];
+const claraRatings = [5, 5, 5, 4, 5, 2, 3];
+
+const tauAverage = calculateAverageRating(tauRatings);
+const colinAverage = calculateAverageRating(colinRatings);
+const claraAverage = calculateAverageRating(claraRatings)
+
+if (tauAverage && colinAverage) {
+  document.querySelector('#tau-score').innerText = tauAverage.toFixed(1) + ' Stars';
+  document.querySelector('#colin-score').innerText = colinAverage.toFixed(1) + ' Stars';
+  document.querySelector('#clara-score').innerText = `${calculateAverageRating(claraRatings) === 0 ? 'No ratings' : claraAverage.toFixed(1) + ' stars'}`
+}
+
+/** Solution **/
 
 /*
-Beaucoup de fonctions ont besoin de variables pour effectuer leur travail. 
+Voici quelques explications :
 
-Quand vous créez ou DÉCLAREZ une fonction, vous indiquez la liste des variables dont elle a besoin pour effectuer son travail : vous définissez les PARAMÈTRES de la fonction.
+La fonction commence par le code suivant :
+*/
 
-Ensuite, à l'appel de la fonction, vous lui attribuez des VALEURS pour ses paramètres. Les valeurs sont les ARGUMENTS d'appel.
+if(ratings.length === 0) {
+  return 0
+}
+/*
+Explication : on souhaite faire la moyenne des valeurs présentes dans le tableau 'ratings'.
+Mais dans le cas où le tableau est vide, on souhaite retourner la valeur 0, la propriété 'length' et 'ratings' permet donc de connaître la longueur du tableau et de faire alors une condition en conséquense.
 
-Enfin, votre fonction peut vous donnez un résultat : une VALEUR DE RETOUR. Supposons que vous ayez une fonction qui compte le nombre de mots dans une chaîne :
+Ensuite nous avons le code suivant :
+*/
+let sum = 0;
+  for(let rating of ratings) {
+    sum += rating;
+  }
 
-- La paramètre sera une chaîne dont vous allez compter les mots.
+/*
+Explications : Ce code a pour objectif de faire la somme de tous les éléments du tableau.
 
-- L'argument sera toute chaîne attribuée à votre fonction quand vous l'appelez.
+Pour cela, on déclare une variable 'sum' avec comme valeur initiale 0.
 
-- La valeur de retour sera le nombre de mots.
+Ensuite on parcourt le tableau 'ratings' et pour chaque élément on additionne leur valeur avec la valeur de 'sum', ce résultat est stocké dans 'sum'.
 
-Commençons par une fonction très simple qui ajoute des nombres.
+Une fois l'ensemble de ce code exécuté, 'sum' contient donc la somme de toutes les variables du tableau.
 
-/** Pratiquez la note moyenne **/
+Pour finir, nous avons le code suivant :
+*/
 
-// Rendez-vous sur la branch P3C1_exo1
+return sum / ratings.length;
 
+/*
+Explication : Nous disposons maintenant de la variable 'sum' qui contient la somme de tous les éléments du tableau.
+
+L'expressions ratings.length qui donne le nombre d'élément du tableau. Avec ces éléments, nous retournons le calcul de la moyenne.
+*/
