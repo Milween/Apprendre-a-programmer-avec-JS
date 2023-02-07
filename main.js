@@ -46,3 +46,17 @@ Commençons par une fonction très simple qui ajoute des nombres.
 
 // Rendez-vous sur la branch P3C1_exo1
 
+
+/*** EN RESUME ***/
+
+/* 
+Dans ce chapitre, vous avez appris,
+
+- Ce qu'est une fonction, comment en déclarer une et comment en appeler une.
+
+- Ce que sont les paramètres, les arguments et les valeurs de retour.
+
+- A écrire une fonction qui parcourt un tableau de nombres pour calculer leur moyenne.
+
+Dans le chapitre suivant, nous allons nous intéresser à un type de fonction associé à une classe : les méthodes.
+*/
