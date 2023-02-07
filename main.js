@@ -1,62 +1,143 @@
-/*** Travaillez sur les fonctions ***/
+/*** Définir des méthodes d'instance et des propriétés ***/
+
+/** Rappel sur la notion de propriété de classe **/
 
 /*
-Dans la deuxième partie de cours, vous avez découvert des notions de base en développement, poursuivons avec les fonctions.
-*/
+Avant d'aborder la notion de méthode d'instance, sur laquelle nous allons nous concentrer dans ce cours, il est important d’expliquer la notion de propriété de classe.
 
-/** Comprendre les fonctions **/
+C’est une variable interne à cette classe que l’on peut définir par défaut et faire évoluer au fur et à mesure de l’exécution de notre code.
+
+Il n’est pas rare d’utiliser le terme “attribut” au lieu de "propriété", mais cela représente bien la même chose.
+*/
 
 /*
-Une FONCTION est un bloc de code auquel vou attribuez un nom. Quand vous APPELEZ cette fonction, vous exécutez le code qu'elle contient. 
+Prenons l'exemple d'une classe qui représenterait un compte bancaire, et que l'on appellerait du coup 'BankAccount'.
 
-Par exemple, dans les vidéos d'enregistrements d'écrans, vous m'avez vu appeler la fonction 'console.log()', qui contient du code permettant d'imprimer sur la console mais vous pouvez créer n'importe quelle fonction vous même :
+On pourrait trouveer comme propriétés 'owner' (permettant d'identifier le propriétaire du compte).
+et 'balance' (permettant de connaître le montant disponible sur le compte).
+
+Ainsi, lorsque que l'on crée une instance de 'BankAccount' avec un propriétaire et un montant initial en argument, on pourra exploiter par la suite ces propriétés pour afficher leurs valeurs, les utiliser pour des calculs, les modifier, ect...
 */
 
-// on défini la fonction :
-function afficherDeuxValeurs(valeur1, valeur2) {
-  console.log('Première valeur:' + valeur1);
-  console.log('Deuxième valeur:' + valeur2);
+/** Tirer parti des classes avec des méthodes d'instance **/
+
+/*
+Si vous revenez au chapitre sur les classes, nous les avons utilisées pour créer des objets ayant certaines propriétés. 
+
+Maintenant que vous avez commencé à découvrir les fonctions, vous pouvez ajouter des méthodes d'instance à ces classes, pour augmenter leur puissance et leur utilité.
+*/
+
+/*
+Une méthode d'instance est une fonction faisant partie d'une classe, et qui agit sur une instance de cette classe.
+
+Reprenons notre exemple de  classe 'BankAccount' (compte bancaire) :
+*/
+
+class BankAccount {
+  constructor(owner, balance) {
+    this.owner = owner;
+    this.balance = balance;
+  }
 }
 
-// On exécute la fonction
-afficherDeuxValeurs(12, 'Bonjour');
+/* 
+Vous pouvez ensuite créer une instance de cette classe appelée 'newAccount' (nouveau compte) :
+*/
 
-// On obtient dans la console
-// Première valeur : 12
-// Deuxième valeur : Bonjour
+const newAccount = new BankAccount('Thibaut Kosmala', 500)
+
+/* Important :
+N'oubliez pas qu'un objet (une instance d'une classe est un objet) est un type par référence, donc vous pouvez toujours apporter des modifications à l'instance de 'newAccount',
+La partie constante désigne une REFERENCE à cette instance.
+*/
 
 /*
-Beaucoup de fonctions ont besoin de variables pour effectuer leur travail. 
-
-Quand vous créez ou DÉCLAREZ une fonction, vous indiquez la liste des variables dont elle a besoin pour effectuer son travail : vous définissez les PARAMÈTRES de la fonction.
-
-Ensuite, à l'appel de la fonction, vous lui attribuez des VALEURS pour ses paramètres. Les valeurs sont les ARGUMENTS d'appel.
-
-Enfin, votre fonction peut vous donnez un résultat : une VALEUR DE RETOUR. Supposons que vous ayez une fonction qui compte le nombre de mots dans une chaîne :
-
-- La paramètre sera une chaîne dont vous allez compter les mots.
-
-- L'argument sera toute chaîne attribuée à votre fonction quand vous l'appelez.
-
-- La valeur de retour sera le nombre de mots.
-
-Commençons par une fonction très simple qui ajoute des nombres.
-
-/** Pratiquez la note moyenne **/
-
-// Rendez-vous sur la branch P3C1_exo1
-
-
-/*** EN RESUME ***/
-
-/* 
-Dans ce chapitre, vous avez appris,
-
-- Ce qu'est une fonction, comment en déclarer une et comment en appeler une.
-
-- Ce que sont les paramètres, les arguments et les valeurs de retour.
-
-- A écrire une fonction qui parcourt un tableau de nombres pour calculer leur moyenne.
-
-Dans le chapitre suivant, nous allons nous intéresser à un type de fonction associé à une classe : les méthodes.
+Telle quelle, l'instance n'est pas très utile. Vous pourriez afficher son solde à la console par    newAccount.balance  , mais si on pensait plutôt à ajouter une mise en forme ? Vous pouvez pour cela ajouter une méthode à la classe !
 */
+
+class bankAccount {
+  constructor(owner, balance) {
+    this.owner = owner;
+    this.balance = balance;
+  }
+  showBalance() {
+  console.log("Solde: " + this.balance + ' EUR');
+  }
+}
+
+/*
+La nouvelle méthode ci-dessus, déclarée par son nom suivi par  (), utilise le mot clé   this  pour accéder à la propriété   balance  de l'instance, et l'afficher sur la console avec une mise en forme supplémentaire.
+
+Ceci signifie que vous pouvez utiliser la notation dot sur l'instance   newAccount  pour appeler sa méthode   showBalance()  :
+*/
+
+const willAccount = new bankAccount('will', 1400)
+
+willAccount.showBalance(); // imprime "Solde: 1400 EUR" dans la console.
+
+/*
+Vous pouvez aussi ajouter des méthodes capables de modifier les propriétés de l'instance. 
+
+Dans ce cas, ajoutez les méthodes deposit() (dépôt) et withdraw() (retrait) à la classe, en n'oubliant pas que les deux ont besoin d'un paramètre amount(montant) (parce que vous devez savoir combien déposer ou retirer !) :
+*/
+
+class Bankaccount {
+  constructor(owner, balance) {
+    this.owner = owner;
+    this.balance = balance;
+  }
+
+  showOwner() {
+    console.log('Propriétaire du compte : ' + this.owner)
+  }
+
+  showBalance() {
+    console.log('Solde : ' + this.balance + ' EUR.')
+  }
+
+  deposit(amount) {
+    console.log('Dépôt de ' + amount + ' EUR.')
+    this.balance += amount;
+    this.showBalance();
+  }
+
+  withdraw(amount) {
+    if (amount > this.balance) {
+      console.log('Retrait refusé !')
+    } else {
+      console.log('Retrait de ' + amount + ' EUR.')
+      this.balance -= amount;
+      this.showBalance();
+    }
+  }
+}
+
+const ThibautAccount = new Bankaccount('Thibaut', 2000)
+
+ThibautAccount.showOwner();
+ThibautAccount.showBalance();
+ThibautAccount.deposit(300);
+ThibautAccount.withdraw(1300);
+
+/*
+La méthode deposit() affiche le montant du dépôt sur la console, ajoute le montant au solde de l'instance, puis appelle la méthode showBalance() de l'instance. Imprimant ainsi le nouveau solde sur la console.
+*/
+/** Notes
+ * Dans le corps d'une classe, le mot clé 'this' fait référence à l'INSTANCE créée de la classe. Dans cet exemple, il fait référence à 'ThibautAccount'.
+**/
+
+/*
+La méthode withDraw() : 
+
+1. Vérifie si le montant demandé est supérieur au solde actuel.
+  
+- Si c'est le cas, le retrait est refusé
+  
+- Sinon, il l'autorise, en soustrayant le montant du solde.
+
+2. Affiche le nouveau solde sur le console.
+*/
+
+/** Pratiquez les méthodes instance **/
+
+// Rendez-vous sur la branche P3C2_exo2
