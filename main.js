@@ -141,3 +141,71 @@ La méthode withDraw() :
 /** Pratiquez les méthodes instance **/
 
 // Rendez-vous sur la branche P3C2_exo2
+
+
+/** Découvrir les méthodes statistiques **/
+
+/*
+Il existe un type spécial de méthode pouvant être ajoutée à une classe : la méthode STATIQUE.
+
+Elle est différente des méthodes d'instance parce qu'elle n'est PAS liée à une instance particulière d'une classe, mais à la classe elle-même.
+
+Utilisez-la pour créer des METHODES UTILITAIRES (helper en EN) où vous n'aurez pas besoin d'une instance d'une classe pour les utiliser. Vous pourrez vous en servir comme boîte à outils de fonctions que vous utiliserez souvent.
+*/
+
+/*
+Par exemple, en JS, l'objet MATH contient beauoup de méthodes utiles :
+*/
+const randomNumber = Math.random() // crée un nombre aléatoire sur l'intervalle [0, 1]
+
+const roundMeDown = Math.floor(495,966) // arrondir vers le bas à l'entier le plus proche, renvoie 495.
+
+/*
+Vous n'avez pas besoin de créer par 'new' une instance de l'objet 'Math' pour utiliser ces méthodes, il suffit de les appeler sur l'objet 'Math' global.
+
+Vous pouvez créer vos propres méthodes statiques par le mot clé 'static'.
+
+Observez la classe suivante :
+*/
+
+class BePolite {
+
+  static sayHello() {
+    console.log('Hello !')
+  }
+
+  static sayHelloTo(name) {
+    console.log('Hello, ' + name + '!')
+  }
+
+  static add(firstNumber, secondNumber) {
+    return firstNumber + secondNumber;
+  }
+}
+
+BePolite.sayHello(); // Imprime Hello
+BePolite.sayHelloTo('Thibaut'); // Imprime Hello, thibaut
+let sum = BePolite(2,3); // Imprime 5
+
+/*
+Vous n'avez pas besoin d'ajouter un constructor à votre classe, car vous n'allez pas l'instancier. Vous avez une méthode qui :
+
+- imprime un message générique.
+
+- Aceepte un argument et l'utilise pour créer un message.
+
+- Renvoie un valeur à partir des arguments que vous lui envoyez.
+
+Toutes ces fonctionnalités pourraient être des FONCTIONS, mais l'avantage d'utiliser des méthodes de classe statiques est par exemple de pouvoir les regrouper par catégorie ou par type.
+*/
+
+
+/*** EN RESUME ***/
+
+/*
+Dans ce chapitre, nous nous sommes intéressés à deux types de méthodes de classe :
+
+les METHODES D'INSTANCES, qui agissent sur les instances individuelles d'une classe ;
+
+les METHODES STATIQUES, qui ne s'appuient pas sur une instance d'une classe.
+*/
