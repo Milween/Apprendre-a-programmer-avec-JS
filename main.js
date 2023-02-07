@@ -1,211 +1,104 @@
-/*** Définir des méthodes d'instance et des propriétés ***/
+/*** Ecrire des fonctions propres ***/
 
-/** Rappel sur la notion de propriété de classe **/
+
+/** Pourquoi la propreté du code est-elle importante **/
 
 /*
-Avant d'aborder la notion de méthode d'instance, sur laquelle nous allons nous concentrer dans ce cours, il est important d’expliquer la notion de propriété de classe.
-
-C’est une variable interne à cette classe que l’on peut définir par défaut et faire évoluer au fur et à mesure de l’exécution de notre code.
-
-Il n’est pas rare d’utiliser le terme “attribut” au lieu de "propriété", mais cela représente bien la même chose.
+Avant de plonger dans les méthodes de codade propre, voyons pourquoi il est important de garder votre code aussi propre que possible.
 */
 
 /*
-Prenons l'exemple d'une classe qui représenterait un compte bancaire, et que l'on appellerait du coup 'BankAccount'.
+Pensez au lieu le plus désordonné et le moins rangé de votre domicile. Il peut s'agir d'un tiroir, d'un placard ou même d'une pièce entière.
 
-On pourrait trouveer comme propriétés 'owner' (permettant d'identifier le propriétaire du compte).
-et 'balance' (permettant de connaître le montant disponible sur le compte).
-
-Ainsi, lorsque que l'on crée une instance de 'BankAccount' avec un propriétaire et un montant initial en argument, on pourra exploiter par la suite ces propriétés pour afficher leurs valeurs, les utiliser pour des calculs, les modifier, ect...
-*/
-
-/** Tirer parti des classes avec des méthodes d'instance **/
-
-/*
-Si vous revenez au chapitre sur les classes, nous les avons utilisées pour créer des objets ayant certaines propriétés. 
-
-Maintenant que vous avez commencé à découvrir les fonctions, vous pouvez ajouter des méthodes d'instance à ces classes, pour augmenter leur puissance et leur utilité.
+À quel point est-ce difficile de trouver quelque chose à cet endroit ? Si vous l'avez récemment utilisé, ce n'est peut-être pas si difficile, mais si c'était il y a longtemps, les choses peuvent devenir complexes.
 */
 
 /*
-Une méthode d'instance est une fonction faisant partie d'une classe, et qui agit sur une instance de cette classe.
+C'est la même chose, ou même pire, avec le code. Si vous n'y avez pas jeté un œil depuis quelques mois et que vous ne l'avez pas écrit proprement, il peut être très long de se rappeler ce que fait quelle fonction, et comment les choses s'organisent entre elles.
 
-Reprenons notre exemple de  classe 'BankAccount' (compte bancaire) :
+Imaginez maintenant que vous ayez hérité du tiroir, du placard ou de la chambre mal rangée de quelqu'un d'autre, qui ne vivrait plus ici.
+
+C'est à cela que ressemble le travail sur le code d'une personne qui ne l'a pas maintenu propre !
 */
 
-class BankAccount {
-  constructor(owner, balance) {
-    this.owner = owner;
-    this.balance = balance;
-  }
-}
-
-/* 
-Vous pouvez ensuite créer une instance de cette classe appelée 'newAccount' (nouveau compte) :
+/* Proverbe de développeur :
+Codez toujours comme si la personne qui devra maintenir ce code était un psychopathe violent sachant où vous vivez.
 */
 
-const newAccount = new BankAccount('Thibaut Kosmala', 500)
+// Maintenant que vous savez POURQUOI vous devez coder proprement, voyons COMMENT faire !
 
-/* Important :
-N'oubliez pas qu'un objet (une instance d'une classe est un objet) est un type par référence, donc vous pouvez toujours apporter des modifications à l'instance de 'newAccount',
-La partie constante désigne une REFERENCE à cette instance.
+
+/** Etre une fonction ou ne pas etre **/
+
+/*
+Quand devrait-on utiliser des fonctions ? Combien faut-il en écrire ? Quelle devrait être leur longueur ?
 */
 
 /*
-Telle quelle, l'instance n'est pas très utile. Vous pourriez afficher son solde à la console par    newAccount.balance  , mais si on pensait plutôt à ajouter une mise en forme ? Vous pouvez pour cela ajouter une méthode à la classe !
-*/
+Jetons un oeil à quelques situations où les fonctions contribuent à la propreté de votre code.
 
-class bankAccount {
-  constructor(owner, balance) {
-    this.owner = owner;
-    this.balance = balance;
-  }
-  showBalance() {
-  console.log("Solde: " + this.balance + ' EUR');
-  }
-}
+/* Ne vous répétez pas */
 
 /*
-La nouvelle méthode ci-dessus, déclarée par son nom suivi par  (), utilise le mot clé   this  pour accéder à la propriété   balance  de l'instance, et l'afficher sur la console avec une mise en forme supplémentaire.
+Si vous trouvez à écrire plusieurs fois le même code, vous devriez probablement le REFACTORISER dans une FONCTION.
 
-Ceci signifie que vous pouvez utiliser la notation dot sur l'instance   newAccount  pour appeler sa méthode   showBalance()  :
+la REFACTORISATION du code consiste à modifier la STRUCTURE d'un élément de code sans changer son comportement.
+
+observons le code suivant :
 */
 
-const willAccount = new bankAccount('will', 1400)
-
-willAccount.showBalance(); // imprime "Solde: 1400 EUR" dans la console.
-
-/*
-Vous pouvez aussi ajouter des méthodes capables de modifier les propriétés de l'instance. 
-
-Dans ce cas, ajoutez les méthodes deposit() (dépôt) et withdraw() (retrait) à la classe, en n'oubliant pas que les deux ont besoin d'un paramètre amount(montant) (parce que vous devez savoir combien déposer ou retirer !) :
-*/
-
-class Bankaccount {
-  constructor(owner, balance) {
-    this.owner = owner;
-    this.balance = balance;
+if (firstUser.online) {
+  if (firstUser.accountType === "normal") {
+      console.log("Hello " + firstUser.name + "!");
+  } else {
+     console.log("Welcome back premium user " + firstUser.name + "!");
+  }
+  
+  }
+  if (secondUser.online) {
+  if (secondUser.accountType === "normal") {
+      console.log("Hello " + secondUser.name + "!");
+  } else {
+     console.log("Welcome back premium user " + secondUser.name + "!");
+  }
+  }
+  
+  if (thirdUser.online) {
+  if (thirdUser.accountType === "normal") {
+      console.log("Hello " + thirdUser.name + "!");
+  } else {
+     console.log("Welcome back premium user " + thirdUser.name + "!");
+  }
   }
 
-  showOwner() {
-    console.log('Propriétaire du compte : ' + this.owner)
-  }
+  /* Nous répétons ici la même tâche plusieurs fois pour des utilisateurs différents. C'est une bonne occasion de factoriser votre code dans une fonction. */
 
-  showBalance() {
-    console.log('Solde : ' + this.balance + ' EUR.')
-  }
-
-  deposit(amount) {
-    console.log('Dépôt de ' + amount + ' EUR.')
-    this.balance += amount;
-    this.showBalance();
-  }
-
-  withdraw(amount) {
-    if (amount > this.balance) {
-      console.log('Retrait refusé !')
+const sendWelcomeMessageToUser = (user) => {
+  if (user.online) {
+    if (user.accountType === "normal") {
+      console.log("Hello " + user.name + "!");
     } else {
-      console.log('Retrait de ' + amount + ' EUR.')
-      this.balance -= amount;
-      this.showBalance();
+        console.log("Welcome back premium user " + user.name + "!");
     }
   }
 }
-
-const ThibautAccount = new Bankaccount('Thibaut', 2000)
-
-ThibautAccount.showOwner();
-ThibautAccount.showBalance();
-ThibautAccount.deposit(300);
-ThibautAccount.withdraw(1300);
-
-/*
-La méthode deposit() affiche le montant du dépôt sur la console, ajoute le montant au solde de l'instance, puis appelle la méthode showBalance() de l'instance. Imprimant ainsi le nouveau solde sur la console.
-*/
-/** Notes
- * Dans le corps d'une classe, le mot clé 'this' fait référence à l'INSTANCE créée de la classe. Dans cet exemple, il fait référence à 'ThibautAccount'.
-**/
-
-/*
-La méthode withDraw() : 
-
-1. Vérifie si le montant demandé est supérieur au solde actuel.
   
-- Si c'est le cas, le retrait est refusé
+sendWelcomeMessageToUser(firstUser);
   
-- Sinon, il l'autorise, en soustrayant le montant du solde.
-
-2. Affiche le nouveau solde sur le console.
-*/
-
-/** Pratiquez les méthodes instance **/
-
-// Rendez-vous sur la branche P3C2_exo2
-
-
-/** Découvrir les méthodes statistiques **/
+sendWelcomeMessageToUser(secondUser);
+  
+sendWelcomeMessageToUser(thirdUser);
 
 /*
-Il existe un type spécial de méthode pouvant être ajoutée à une classe : la méthode STATIQUE.
+Nous avons créé une fonction 'sendWelcomeMessageToUser' (un nom qui exprime clairement ce que fait la fonction) et l'avons appelée pour chaque utilisateur.
 
-Elle est différente des méthodes d'instance parce qu'elle n'est PAS liée à une instance particulière d'une classe, mais à la classe elle-même.
+Dans ce cas, nous avons réduit la quantité de code de 23 lignes à 13, tout en le rendant plus lisible.
 
-Utilisez-la pour créer des METHODES UTILITAIRES (helper en EN) où vous n'aurez pas besoin d'une instance d'une classe pour les utiliser. Vous pourrez vous en servir comme boîte à outils de fonctions que vous utiliserez souvent.
-*/
+Grâce à un nom de fonction descriptif, vous pouvez indiquer que nous envoyons un message de bienvenue à trois utilisateurs.
 
-/*
-Par exemple, en JS, l'objet MATH contient beauoup de méthodes utiles :
-*/
-const randomNumber = Math.random() // crée un nombre aléatoire sur l'intervalle [0, 1]
+// DRY : Don't Repeat Yourself
 
-const roundMeDown = Math.floor(495,966) // arrondir vers le bas à l'entier le plus proche, renvoie 495.
+/** Pratiquez le principe DRY **/
 
-/*
-Vous n'avez pas besoin de créer par 'new' une instance de l'objet 'Math' pour utiliser ces méthodes, il suffit de les appeler sur l'objet 'Math' global.
+// Rendez-vous sur la branche P3C3_exo1
 
-Vous pouvez créer vos propres méthodes statiques par le mot clé 'static'.
-
-Observez la classe suivante :
-*/
-
-class BePolite {
-
-  static sayHello() {
-    console.log('Hello !')
-  }
-
-  static sayHelloTo(name) {
-    console.log('Hello, ' + name + '!')
-  }
-
-  static add(firstNumber, secondNumber) {
-    return firstNumber + secondNumber;
-  }
-}
-
-BePolite.sayHello(); // Imprime Hello
-BePolite.sayHelloTo('Thibaut'); // Imprime Hello, thibaut
-let sum = BePolite(2,3); // Imprime 5
-
-/*
-Vous n'avez pas besoin d'ajouter un constructor à votre classe, car vous n'allez pas l'instancier. Vous avez une méthode qui :
-
-- imprime un message générique.
-
-- Aceepte un argument et l'utilise pour créer un message.
-
-- Renvoie un valeur à partir des arguments que vous lui envoyez.
-
-Toutes ces fonctionnalités pourraient être des FONCTIONS, mais l'avantage d'utiliser des méthodes de classe statiques est par exemple de pouvoir les regrouper par catégorie ou par type.
-*/
-
-
-/*** EN RESUME ***/
-
-/*
-Dans ce chapitre, nous nous sommes intéressés à deux types de méthodes de classe :
-
-les METHODES D'INSTANCES, qui agissent sur les instances individuelles d'une classe ;
-
-les METHODES STATIQUES, qui ne s'appuient pas sur une instance d'une classe.
-*/
