@@ -343,3 +343,21 @@ La mise en forme du code est source de nombreuses discussions entre les dévs, e
 
 // rendez vous sur la branche P3C3_exo2
 
+
+/*** EN RESUME ***/
+
+/*
+Dans ce chapitre, nous avons étudié quelques techniques et meilleurs pratiques de codage propre :
+
+- REFACTORISATION du code en fonctions, quand du code se répète, ou quand une fonction fait trop de choses.
+
+- Les fonctions ne doivent faire QU'UNE SEULE CHOSE, elles sont souvent plus claires que les fonctions à plusieurs usages.
+
+- Laisser des COMMENTAIRES appropriés rend votre code beaucoup plus facile à comprendre.
+
+- Il est très important d'avoir une CONVENTION DE NOMMAGE strictte avec des NOMS CLAIRS ET DESCRIPTIFS.
+
+- Vous avez vu des exemples de MISE EN FORME DU CODE, et différents choix possibles.
+
+*/
+
