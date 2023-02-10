@@ -1,148 +1,81 @@
-/*** Tester qu'une fonction fait ce qu'elle dit ***/
-
-/** Comprendre l'importance des tests **/
-
-/* 
-Il y a environ un an, j'ai été appelé dans une start-up pour les aider à terminer un développement à temps pour leur date de déploiement. Le produit de cette société traite un grand nombre de petites transactions, donc l'exactitude était essentielle.
-
-Je travaillais sur l'interface, mais j'ai immédiatement remarqué un problème : les calculs ne correspondaient pas. En lançant quelques centaines de transactions, les totaux étaient faux de plusieurs dizaines d'euros. Quelque chose allait sérieusement de travers.
-
-Ce projet était grand, complexe et très ambitieux (l'interface elle-même avait plus de 600 000 lignes de code !), mais cette start-up n'avait pas mis en place d'architecture de test.
-
-Pour localiser le problème, il nous a fallu plus d'une semaine avec de plus en plus de frustration et de panique. Il y avait un quart de million d'euros en jeu, et cela seulement pour un client.
-
-L'histoire s'est bien terminée, mais il a fallu une semaine entière pour rechercher une erreur, qui aurait été décelée s'il y avait eu un système décent de test. Nous aurions pu perdre tellement d'argent que la société aurait mis la clé sous la porte.
-*/
-
-
-/** Qu'est ce que le test **/
-
-// EH bien, cela dépend, il y en a trois essentiels.
-
-/* Créez des tests unitaires */
+/*** Déboguer votre fonction ***/
 
 /*
-LE test unitaire vérifie des unités individuelles (en général des fonctions uniques ou des classes) en leurs fournissant une entrée et en s'assurant qu'elles donnent la sortie attendue.
+Quand quelque chose ne va pas dans votre projet, il peut être difficile de savoir ce qui s'est passé. Voici quelques techniques qui, je l'espère, devraient vous aider à remettre les choses d'aplomb !
 */
 
-/* Important : 
-C'est une autre raison pour écrire des fonctions courtes qui n'ont qu'un seul usage : il est plus facile d'écrire des tests pour elles !
-*/
+/** Afficher la console **/
 
 /*
-En général, chaque unité est testée sur un simple cas, puis sur un ou plusieurs cas limites. Si par exemple, vous prenez quelques fonctions du chapitre précédent :
+LA console est un outil incroyable utile pour le débogage du code, observons une version défectueuse d'une fonction d'un chapitre précédent.
 */
 
 const getWordCount = (stringToTest) => {
-  const wordArray = stringToTest.split(' ');
+  const wordArray = stringToTest.split('');
+  console.log("Word array in getWordCount: ");
+  console.log(wordArray);
   return wordArray.length;
 }
 
-const getLetterCount = (stringToTest) => {
-  const wordArray = stringToTest.split(' ');
-  let totalLetters = 0;
-  for (let word of wordArray) {
-      word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
-      totalLetters += word.length;
-      
-  }
-
-  return totalLetters;
-}
-
-/* Quel cas testeriez-vous pour chaque fonction ici ?
-
-- getWordCount : vous pourriez vérifier une chaîne dont vous connaissez le nombre de mots (cas simple). Puis peut-être une chaîne vide, et une chaîne qui ne contiendrait que des espaces.
-
-- getLetterCount : vous pourriez vérifier une chaîne font vous connaissez le nombre de lettres (cas simple). Puis essayer une chaîne ne contenant que des signes de ponctuation (cas limite).
-
-Vous pourriez écrire ces tests comme code accessoire :
+getWordCount('thibaut kosmala')
+/*
+Pour une raison quelconque, cette fonction renvoie des valeurs curieuses. Utilisons un affichage de console pour voir ce qui se passe :
 */
 
-const testSimpleWordCount = () => {
-  const testString = 'I have four words!';
-  if (getWordCount(testString) !== 4) {
-      console.error('Simple getWordCount failed!');
-  }
-}
+/* Maintenant, à l'appel, nous obtenons le résultat suivant dans la console.
 
-const testEdgeWordCount = () => {
-  const testString = '             ';
-  if (getWordCount(testString) !== 0) {
-      console.error('Edge getWordCount failed!');
-  }
-}
-
-const testSimpleLetterCount = () => {
- const testString = 'I have twenty one letters!';
-  if (getLetterCount(testString) !== 21) {
-      console.error('Simple getLetterCount failed!');
-  }
-}
-
-const testEdgeLetterCount = () => {
-  const testString = '")(&;//!!';
-  if (getLetterCount(testString) !== 0) {
-      console.error('Edge getLetterCount failed!');
-  }
-}
-
-/* 
-Ce sont des tests simples, et ils peuvent convenir pour des vérifications rapides, mais il est généralement préférable d'utiliser une ARCHITECTURE DE TEST.
-
-Les architectures et bibliothèques de test permettent d'écrire automatiquement des suites de tests complètes de votre code, à l'aide de fonctions et de syntaxe spécifiques. Voici à quoi pourraient ressembler les deux tests ci -dessus dans certaines architectures :
+(15) ['t', 'h', 'i', 'b', 'a', 'u', 't', ' ', 'k', 'o', 's', 'm', 'a', 'l', 'a']
 */
-
-describe('getWordCount()', function() {
-  it('should find four words', function() {
-    expect(getWordCount('I have four words').to.equal(4));
-  });
-  it('should find no words', function() {
-    expect(getWordCount('   ').to.equal(0));
-  });
-});
-
-/* Les tests unitaires constituent généralement entre 60 et 80% de l'ensemble des tests des projets JS. Mais il existe d'autres tests, comme les tests d'intégration.
-*/
-
-
-/** Découvrez les test d'intégrations **/
 
 /*
-Les tests d'intégration vérifient les multiples fonctions ou classes pour s'assurer qu'elles travaillent ensemble comme elles sont censées le faire. 
-
-L'image ci-dessus montre ce qui se passe quand les unités individuelles fonctionnent correctement (les deux tiroirs s'ouvrent correctement séparément), mais que leur intégration dans le système qui les entoure cause un problème de fonctionnement.
+Plutôt que de répartir la chaîne en mots, elle la répartit en lettres ! Une observation plus attentive de la fonction montre une erreur à l'appel de  split : ce devrait être stringToTest.split(' '), et non pas stringToTest.split('').
 */
-
-/** Appréhender les tests fonctionnels **/
 
 /*
-Les tests foncitonnels, aussi appelés end2end, vérfiient des scénarios complet en contexte. Par exemple, un utilisateur se connecte à votre application, ouvre ses notificaitions et les marque toutes commme lues. 
+L'utilisation de la convient bien dans les cas simples et isolés comme celui-ci, mais dans les projets plus complexes, ce serait beaucoup plus difficles et plus chronophages.
 
-Ces tests vérifient aussi les ressources externes que votre projet peut utiliser, par exemple un système de paiements tiers.
+Dans ce cas, il faut des armes plus puissantes.
 */
 
-/* Commet ça se passe dans la pratique ? */
+/* Notes :
+Je connais beaucoup de développeurs qui utilisent toujours la technique de l'affichage de console. Cela fonctionne, mais c'est lent. L'apprentissage d'outils plus évolués vous aidera à déboguer plus rapidement, pour passer plus de temps sur les choses amusantes !
+*/
+
+
+/** Utilisez des outils pour développer **/
 
 /*
-Pratiquez les tests unitaires demande un peu d'expérience et d'utiliser des outils dédiés. Il existe différents frameworks dédiés aux tests unitaires et fonctionneles pour les applications JS frontEnd et backEnd.
-On retrouve souvent les framework (jasmine, mocha.js Mocha,ect ..).
+Pour écrire du JavaScript pour des sites web, vous pouvez utiliser les outils pour développeur intégrés dans les quatre navigateurs essentiels : Chrome, Firefox, Safari et Edge.
 
-Pour utiliser ces outils, iil est souvent nécessaire mettre en place une configuration particulière et une système de compilation de votre code. Il vous est donc nécessaire d'appréhendez plus largement JS avant de pratiquer les tests.
+Chaque navigateur contient un système qui vous permet d'ajouter des points d'arrêt pas-à-pas (breakpoints) à votre code.
 
-Une fois que vous aurez une bonne connaissance et compréhension du JS et un peu d'expérience, vous pourrez consulter le cours Testez l’interface de votre site.
+Quand le navigateur arrive sur un point d'arrêt de votre code, il met l'exécution en pause, ce qui vous permet de parcourir l'exécution ligne après ligne, en vérifiant les valeurs des variables à chaque étape.
+
+Vous pouvez même ignorer certains morceaux de code si vous souhaitez voir comment votre appli y réagit.
+*/
+
+/* La plupart des ENVIRONNEMENTS DE DÉVELOPPEMENT INTEGRES comportent aussi des DÉBOGUEUR, qui vous permet de tout déboguer dans votre espace de travail. Ceka peut-être pratique, en particulier si votre code ne doit pas s'exécuter sur un page web ne peut pas être vérifié dans le navigateur.
+
+les environnements de développement intégrés les plus courant sont notamment VS code et webstorm.
+*/
+
+/*
+L'affichage de console, c'est bien, les débogueurs, c'est mieux, mais quand tout le reste a échoué, il existe une dernière solution.
 */
 
 
-/*** EN RESUME ***/
+/** Déboguez avec un canard en plastique **/
 
-/* Dans ce chapitr, nous vous avons présenté les trois types de tests :
+/*
+Quand votre code a un bug que vous ne pouvez pas trouver et expliquer, vous pouvez parler à un canard en plastique que vous conservez sur votre bureau. 
 
- - Les tests unitaires.
+Vous expliquez votre code ligne par ligne en termes simples, que le canard peut comprendre. La réflexion à voix haute et l'explication de votre code en termes simples vous permettra souvent de voir finalement : "Comment n'ai-je pas vu ça ? Il y a un bug !".
 
- - Les tests d'intégrations.
+Même si cette section est un peu humoristique, le raisonnement sur votre code, à voix haute et en termes simples, peut être utile pour le débogage et la factorisation !
+*/
 
- - Les tests fonctionnels (E2E).
 
- Vous avez aussi vu que, bien que des tests manuels sur du code accessoire puissent fonctionner, il existe des architectures automatisées qui rendent les tests plus faciles et fiables.
- */
+/** Pratiquez les console.log **/
+
+// rendez-vous sur la branch P3C5_exo1.
+
