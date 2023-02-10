@@ -1,81 +1,75 @@
-/*** Pratiquez le principe DRY. ***/
+/*** Pratiquez l'écriture de code propre ***/
 
 /*
-Voici une activité où vous devrez trouver où le code nécessite une factorisation, et comment le faire.
+Voici un code js avec plusieurs fonctions et différentes mauvaises pratiques rendant le code pas propre. Votre objectif est de créer une fonction pour alléger votre code.
 
-Rendez-vous sur cet éditeur CodePen. Ce code importe des séries depuis la base de données, en génère les informations pour les composants du site, et les met dans un tableau à exporter.
 
-Cependant, pour l'instant, le même code est répété pour chaque série. L'endroit parfait pour une fonction !
-
-1. Créez une fonction qui vous permet de refactoriser ce code, afin de le raccourcir et de le rendre plus lisible.
-
-2. Appelez votre nouvelle fonction pour chaque série pour créer le composant correspondant, en passant les arguments appropriés.
 */
-
-// Code du l'exercice :
-
-
-class Show {
-  constructor(title, numberOfSeasons, episodesPerSeason) {
-    this.title = title;
-    this.numberOfSeasons = numberOfSeasons;
-    this.episodesPerSeason = episodesPerSeason;
-  }
-}
-
-const tau = new Show('The Story of Tau', 5, 12);
-const meldrum = new Show('The Hero of Old Meldrum', 3, 6);
-const clara = new Show('The Bugs of Isla Clara', 6, 15);
-
-const shows = [tau, meldrum, clara]
 
 // INSERER VOTRE CODE CI_DESSOUS 
 
-function generateComponent(show) {
-  const titleText = show.title;
-  const seasonsText = show.numberOfSeasons + ' seasons';
-  const episodesText = show.episodesPerSeason + ' episodes per season';
+//variable de différentes personnes
+let personne1 = "Jean";
+let personne2 = "Paul";
+let person3 = "Marcel";
 
-  return {
-    titleText,
-    seasonsText,
-    episodesText
-  }
+//On met la première lettre en majuscule, on salue la première personne et on donne le nombre de lettre dans son prénom
+personne1 = personne1[0].toUpperCase() + personne1.substr(1);
+const longueurPrenom1 = personne1.length;
+console.log(`Bonjour ${personne1}, ton prénom contient ${longueurPrenom1} lettres`);
+
+//On met la première lettre en majuscule, on salue la deuxième personne et on donne le nombre de lettre dans son prénom
+personne2 = personne2[1].toUpperCase() + personne2.substr(1);
+const longueurPrenom2 = personne2.length;
+console.log(`Bonjour ${personne2}, ton prénom contient ${longueurPrenom2} lettres`);
+
+//On met la première lettre en majuscule, on salue la troisième personne et on donne le nombre de lettre dans son prénom
+personne3 = personne3[2].toUpperCase() + personne3.substr(1);
+const longueurPrenom3 = personne3.length;
+console.log(`Bonjour ${personne3}, ton prénom contient ${longueurPrenom3} lettres`);
+
+
+//-----CODE MAL NOMMÉ------
+
+//tableau des ages des élèves dans la classe
+const lrf = [14, 14, 15, 14, 16, 14, 14, 13];
+// Nombre d'élèves
+const kf = lrf.length;
+// variable pour calculer la somme des ages
+let mf = 0;
+for(let df of lrf){
+  mf += df;
+}
+//moyenne d'age dans la classe
+const mld = mf / kf;
+console.log('Il y a ' + kf + " élèves dans la classe et la moyenne d'age est " + mld);
+    
+
+
+//-----CODE MAL MIS EN FORME------
+
+const temperature = 25;
+
+if(temperature < 10){  console.log("Il fait très froid"); }
+else if(temperature < 0){
+console.log(
+"Il fait froid"
+);
+}else if(temperature < 10){
+  console.log(            "Il fait frais");
+}else if(temperature < 20){
+console.log("Il fait doux");
+}else if(temperature < 30){
+  console.log("Il fait bon");
+
+
+
+}else{
+  
+  
+  
+  
+  console.log("Il fait chaud");
 }
 
-const tauComponent = generateComponent(tau);
-const meldrumComponent = generateComponent(meldrum);
-const claraComponent = generateComponent(clara);
-
-const showComponents = [tauComponent, meldrumComponent, claraComponent];
-
 // INSERER VOTRE CODE AU_DESSUS
-
-const body = document.querySelector('body');
-
-const updateShows = () => {
-  for (let show of showComponents) {
-    
-    const showPane = document.createElement('div');
-    showPane.classList.add('series-frame');
-    
-    const showHeading = document.createElement('h2');
-    showHeading.innerText = show.titleText;
-    
-    const showDetails = document.createElement('p');
-    
-    const seasons = document.createElement('p');
-    seasons.innerText = show.seasonsText;
-    
-    const episodes = document.createElement('p');
-    episodes.innerText = show.episodesText;
-    
-    showDetails.append(seasons);
-    showDetails.append(episodes);
-    showPane.append(showHeading);
-    showPane.append(showDetails);
-    body.append(showPane);
-  }
-};
-
-updateShows();
