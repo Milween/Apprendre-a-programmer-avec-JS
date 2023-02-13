@@ -1,81 +1,62 @@
-/*** Déboguer votre fonction ***/
+/*** Pratiquez les consoles.log() ***/
 
 /*
-Quand quelque chose ne va pas dans votre projet, il peut être difficile de savoir ce qui s'est passé. Voici quelques techniques qui, je l'espère, devraient vous aider à remettre les choses d'aplomb !
+Il est important de savoir utiliser les consoles.log et de bien analyser les différentes variables. L’objectif est de comprendre quelle est l’erreur de logique qui pose souci.
 */
-
-/** Afficher la console **/
 
 /*
-LA console est un outil incroyable utile pour le débogage du code, observons une version défectueuse d'une fonction d'un chapitre précédent.
+Rendez-vous sur le CodePen à cette adresse. Le code a pour objectif de convertir des années en mois (dans une année, il y a 12 mois). Si on saisit 10 ans dans le champ Année et qu’on clique sur Convertir, on se retrouve avec une phrase nous indiquant que dans 10 années il y a 80 mois, ce qui est faux car la bonne réponse est 120 mois.
 */
 
-const getWordCount = (stringToTest) => {
-  const wordArray = stringToTest.split('');
-  console.log("Word array in getWordCount: ");
-  console.log(wordArray);
-  return wordArray.length;
+/*
+Le calcul des mois se fait à la ligne 25, et on souhaite comprendre ce qui ne va pas dans le calcul.
+
+Votre mission ici est de faire des console.log au niveau des lignes 27 à 31 pour analyser les variables utilisées pour le calcul de la ligne 25. 
+
+Suite à l'analyse, vous pourrerz comprendre ce qui ne va pas et effectuer la correction nécessaire.
+*/
+
+// ENTREZ VOTRE CODE CI DESSOUS :
+
+
+
+// ENTREZ VOTRE CODE CI DESSUS :
+
+// Code de l'exercice :
+
+// on pointe sur l'élément de message.
+const espaceMessage = document.querySelector('#message');
+
+// On pointe sur l'élément de bouton.
+const bouton = document.querySelector("#bouton")
+
+// On pointe sur l'élément de champ de saisie de l'année.
+const anneeInput = document.querySelector('#annee');
+
+let params = [];
+for (let i = 20; i > 0; i--) {
+  params.push(i)
 }
 
-getWordCount('thibaut kosmala')
-/*
-Pour une raison quelconque, cette fonction renvoie des valeurs curieuses. Utilisons un affichage de console pour voir ce qui se passe :
-*/
+// Définir une variable année.
+let annee;
 
-/* Maintenant, à l'appel, nous obtenons le résultat suivant dans la console.
+function onConvert() {
+  // on récupère la saisie de l'année et on transforme le texte en nombre entier.
+  annee = parseInt(anneeInput.value);
+  console.log('annee', annee)
 
-(15) ['t', 'h', 'i', 'b', 'a', 'u', 't', ' ', 'k', 'o', 's', 'm', 'a', 'l', 'a']
-*/
-
-/*
-Plutôt que de répartir la chaîne en mots, elle la répartit en lettres ! Une observation plus attentive de la fonction montre une erreur à l'appel de  split : ce devrait être stringToTest.split(' '), et non pas stringToTest.split('').
-*/
-
-/*
-L'utilisation de la convient bien dans les cas simples et isolés comme celui-ci, mais dans les projets plus complexes, ce serait beaucoup plus difficles et plus chronophages.
-
-Dans ce cas, il faut des armes plus puissantes.
-*/
-
-/* Notes :
-Je connais beaucoup de développeurs qui utilisent toujours la technique de l'affichage de console. Cela fonctionne, mais c'est lent. L'apprentissage d'outils plus évolués vous aidera à déboguer plus rapidement, pour passer plus de temps sur les choses amusantes !
-*/
+  // Si la saisie n'est pas un nombre, on affiche un message d'erreur.
+  if(isNaN(annee)) {
+    alert("Ceci n'est pas un nombre");
+    return;
+  }
+  const mois = annee * params[8];
+  console.log('params', params)
+  
+  espaceMessage.innerHTML = annee + ' années font ' + mois + ' mois.';
+}
 
 
-/** Utilisez des outils pour développer **/
-
-/*
-Pour écrire du JavaScript pour des sites web, vous pouvez utiliser les outils pour développeur intégrés dans les quatre navigateurs essentiels : Chrome, Firefox, Safari et Edge.
-
-Chaque navigateur contient un système qui vous permet d'ajouter des points d'arrêt pas-à-pas (breakpoints) à votre code.
-
-Quand le navigateur arrive sur un point d'arrêt de votre code, il met l'exécution en pause, ce qui vous permet de parcourir l'exécution ligne après ligne, en vérifiant les valeurs des variables à chaque étape.
-
-Vous pouvez même ignorer certains morceaux de code si vous souhaitez voir comment votre appli y réagit.
-*/
-
-/* La plupart des ENVIRONNEMENTS DE DÉVELOPPEMENT INTEGRES comportent aussi des DÉBOGUEUR, qui vous permet de tout déboguer dans votre espace de travail. Ceka peut-être pratique, en particulier si votre code ne doit pas s'exécuter sur un page web ne peut pas être vérifié dans le navigateur.
-
-les environnements de développement intégrés les plus courant sont notamment VS code et webstorm.
-*/
-
-/*
-L'affichage de console, c'est bien, les débogueurs, c'est mieux, mais quand tout le reste a échoué, il existe une dernière solution.
-*/
-
-
-/** Déboguez avec un canard en plastique **/
-
-/*
-Quand votre code a un bug que vous ne pouvez pas trouver et expliquer, vous pouvez parler à un canard en plastique que vous conservez sur votre bureau. 
-
-Vous expliquez votre code ligne par ligne en termes simples, que le canard peut comprendre. La réflexion à voix haute et l'explication de votre code en termes simples vous permettra souvent de voir finalement : "Comment n'ai-je pas vu ça ? Il y a un bug !".
-
-Même si cette section est un peu humoristique, le raisonnement sur votre code, à voix haute et en termes simples, peut être utile pour le débogage et la factorisation !
-*/
-
-
-/** Pratiquez les console.log **/
-
-// rendez-vous sur la branch P3C5_exo1.
-
+// On écoute l'action de click sur le onConvert et on appelle la fonction onConvert.
+bouton.addEventListener('click', onConvert);
