@@ -79,3 +79,16 @@ Même si cette section est un peu humoristique, le raisonnement sur votre code, 
 
 // rendez-vous sur la branch P3C5_exo1.
 
+
+/** EN RESUME **/
+
+/*
+Dans ce chapitre, vous appris trois techniques de débogage différentes :
+
+- Affichage de console : parfait pour de petites erreurs, simple ou isolées. Mais pas idéal dans des projets plus grands et plus complexes.
+
+- Utilisation des outils de développement : qu'il s'agisse des outils intégrés dans la plupart des navigateurs, ou des débogueur de votre IDE, c'est à coup sûr la façon fiable de débloguer du code.
+
+- Débogage avec un canard en plastique, quand les choses vont terriblement mal.
+*/
+
